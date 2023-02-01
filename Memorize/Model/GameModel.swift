@@ -5,7 +5,54 @@
 //  Created by Valerio D'ALESSIO on 31/1/23.
 //
 
-import SwiftUI
+protocol DeckGeneratorService {
+	/// Based on the self selectedEmoji and selectedLevel
+	/// returns an array of shuffled string equals to the size
+	/// of difficulty level
+	///
+	/// - parameters: selectedType: CardType, difficultyLevel: GameLevel
+	/// - returns: A new keyed encoding container.
+	func shuffleDeckGenerator(selectedType: CardType, difficultyLevel: GameLevel) -> [String]
+}
+
+class DeckGenerator: DeckGeneratorService {
+	func shuffleDeckGenerator(selectedType: CardType, difficultyLevel: GameLevel) -> [String] {
+		var deck: [String] = []
+		var shuffleDeck: [String] = []
+		
+		switch selectedType {
+		case .emoji:
+			shuffleDeck = selectedType.symbols.shuffled()
+		case .symbol:
+			shuffleDeck = selectedType.symbols.shuffled()
+		case .picture:
+			shuffleDeck = selectedType.symbols.shuffled()
+		}
+		
+		for cardAtIndex in 0..<difficultyLevel.rawValue {
+			deck.append(shuffleDeck[cardAtIndex])
+		}
+		
+		return deck
+	}
+}
+
+class DeckViewModel {
+	private let deckGenerator: DeckGeneratorService
+	
+	init(deckGenerator: DeckGeneratorService) {
+		self.deckGenerator = deckGenerator
+	}
+	
+	func shuffleDeck(selectedType: CardType, difficultyLevel: GameLevel) -> [String] {
+		return deckGenerator.shuffleDeckGenerator(selectedType: selectedType, difficultyLevel: difficultyLevel)
+	}
+}
+
+struct EmojiStorage {
+	static let animalDeck: [String] = ["🐸", "🦁", "🐼", "🦄", "🐷", "🐭", "🐨", "🦊", "🐮", "🐿", "🐰", "😺"]
+	static let travelDeck: [String] = ["✈️", "🚗", "🚎", "🛳", "🚁", "🚂", "🏍", "🚲", "🗼", "🚖", "🚡", "🛻"]
+}
 
 enum GameLevel: Int {
 	case easy = 6
@@ -13,15 +60,21 @@ enum GameLevel: Int {
 	case hard = 12
 }
 
-enum CardType: String {
-	case emoji
-	case symbol
-	case picture
+enum CardType {
+	case emoji(CardOption)
+	case symbol(CardOption)
+	case picture(CardOption)
 	
 	var symbols: [String] {
 		switch self {
-		case .emoji:
-			return CardOption.animal.symbols
+		case .emoji(let card):
+			switch card {
+			case .animal:
+				return CardOption.animal.symbols
+			case .travel:
+				return CardOption.travel.symbols
+			}
+			
 		case .symbol:
 			return [""]
 		case .picture:
@@ -37,9 +90,9 @@ enum CardOption: String {
 	var symbols: [String] {
 		switch self {
 		case .animal:
-			return ["🐸", "🦁", "🐼", "🦄", "🐷", "🐭"]
+			return EmojiStorage.animalDeck
 		case .travel:
-			return ["✈️", "🚗", "🚎", "🛳", "🚁", "🚂"]
+			return EmojiStorage.travelDeck
 		}
 	}
 }
