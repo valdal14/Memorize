@@ -13,8 +13,25 @@
 		012BACE4298968EB00BD2C44 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 012BACE3298968EB00BD2C44 /* Preview Assets.xcassets */; };
 		012BACE6298968EB00BD2C44 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BACE5298968EB00BD2C44 /* Persistence.swift */; };
 		012BACE9298968EB00BD2C44 /* Memorize.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 012BACE7298968EB00BD2C44 /* Memorize.xcdatamodeld */; };
-		012BACF829896B3700BD2C44 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BACF729896B3700BD2C44 /* GameModel.swift */; };
+		012BACF829896B3700BD2C44 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BACF729896B3700BD2C44 /* CardModel.swift */; };
+		01DAF6EF298B983D002860F1 /* DeckGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6EE298B983D002860F1 /* DeckGenerator.swift */; };
+		01DAF6F1298B986A002860F1 /* DeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6F0298B986A002860F1 /* DeckViewModel.swift */; };
+		01DAF6F7298B9A4D002860F1 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6F6298B9A4D002860F1 /* AudioService.swift */; };
+		01DAF6F9298B9C3D002860F1 /* AudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6F8298B9C3D002860F1 /* AudioViewModel.swift */; };
+		01DAF6FC298B9FA3002860F1 /* chimeup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 01DAF6FA298B9FA2002860F1 /* chimeup.mp3 */; };
+		01DAF6FD298B9FA3002860F1 /* success.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 01DAF6FB298B9FA3002860F1 /* success.m4a */; };
+		01DAF705298B9FD6002860F1 /* MemorizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF704298B9FD6002860F1 /* MemorizeTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		01DAF706298B9FD6002860F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 012BACD1298968EA00BD2C44 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 012BACD8298968EA00BD2C44;
+			remoteInfo = Memorize;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		012BACD9298968EA00BD2C44 /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,11 +41,26 @@
 		012BACE3298968EB00BD2C44 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		012BACE5298968EB00BD2C44 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		012BACE8298968EB00BD2C44 /* Memorize.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memorize.xcdatamodel; sourceTree = "<group>"; };
-		012BACF729896B3700BD2C44 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		012BACF729896B3700BD2C44 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		01DAF6EE298B983D002860F1 /* DeckGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckGenerator.swift; sourceTree = "<group>"; };
+		01DAF6F0298B986A002860F1 /* DeckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewModel.swift; sourceTree = "<group>"; };
+		01DAF6F6298B9A4D002860F1 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		01DAF6F8298B9C3D002860F1 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
+		01DAF6FA298B9FA2002860F1 /* chimeup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chimeup.mp3; sourceTree = "<group>"; };
+		01DAF6FB298B9FA3002860F1 /* success.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = success.m4a; sourceTree = "<group>"; };
+		01DAF702298B9FD6002860F1 /* MemorizeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemorizeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		01DAF704298B9FD6002860F1 /* MemorizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		012BACD6298968EA00BD2C44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01DAF6FF298B9FD6002860F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				012BACDB298968EA00BD2C44 /* Memorize */,
+				01DAF703298B9FD6002860F1 /* MemorizeTests */,
 				012BACDA298968EA00BD2C44 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				012BACD9298968EA00BD2C44 /* Memorize.app */,
+				01DAF702298B9FD6002860F1 /* MemorizeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,8 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				012BACDC298968EA00BD2C44 /* MemorizeApp.swift */,
-				012BACF5298969F200BD2C44 /* Service */,
 				012BACF4298969AE00BD2C44 /* Asset */,
+				012BACF5298969F200BD2C44 /* Service */,
 				012BACF32989695000BD2C44 /* ViewModel */,
 				012BACF22989694800BD2C44 /* Model */,
 				012BACF12989694000BD2C44 /* View */,
@@ -88,7 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				012BACF629896ADD00BD2C44 /* CoreData */,
-				012BACF729896B3700BD2C44 /* GameModel.swift */,
+				012BACF729896B3700BD2C44 /* CardModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -96,6 +130,8 @@
 		012BACF32989695000BD2C44 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				01DAF6F0298B986A002860F1 /* DeckViewModel.swift */,
+				01DAF6F8298B9C3D002860F1 /* AudioViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -103,6 +139,8 @@
 		012BACF4298969AE00BD2C44 /* Asset */ = {
 			isa = PBXGroup;
 			children = (
+				01DAF6FA298B9FA2002860F1 /* chimeup.mp3 */,
+				01DAF6FB298B9FA3002860F1 /* success.m4a */,
 				012BACE0298968EB00BD2C44 /* Assets.xcassets */,
 			);
 			path = Asset;
@@ -111,6 +149,8 @@
 		012BACF5298969F200BD2C44 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				01DAF6EE298B983D002860F1 /* DeckGenerator.swift */,
+				01DAF6F6298B9A4D002860F1 /* AudioService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -122,6 +162,14 @@
 				012BACE7298968EB00BD2C44 /* Memorize.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		01DAF703298B9FD6002860F1 /* MemorizeTests */ = {
+			isa = PBXGroup;
+			children = (
+				01DAF704298B9FD6002860F1 /* MemorizeTests.swift */,
+			);
+			path = MemorizeTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +192,24 @@
 			productReference = 012BACD9298968EA00BD2C44 /* Memorize.app */;
 			productType = "com.apple.product-type.application";
 		};
+		01DAF701298B9FD6002860F1 /* MemorizeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01DAF708298B9FD6002860F1 /* Build configuration list for PBXNativeTarget "MemorizeTests" */;
+			buildPhases = (
+				01DAF6FE298B9FD6002860F1 /* Sources */,
+				01DAF6FF298B9FD6002860F1 /* Frameworks */,
+				01DAF700298B9FD6002860F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				01DAF707298B9FD6002860F1 /* PBXTargetDependency */,
+			);
+			name = MemorizeTests;
+			productName = MemorizeTests;
+			productReference = 01DAF702298B9FD6002860F1 /* MemorizeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -156,6 +222,10 @@
 				TargetAttributes = {
 					012BACD8298968EA00BD2C44 = {
 						CreatedOnToolsVersion = 14.1;
+					};
+					01DAF701298B9FD6002860F1 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 012BACD8298968EA00BD2C44;
 					};
 				};
 			};
@@ -173,6 +243,7 @@
 			projectRoot = "";
 			targets = (
 				012BACD8298968EA00BD2C44 /* Memorize */,
+				01DAF701298B9FD6002860F1 /* MemorizeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -182,8 +253,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01DAF6FD298B9FA3002860F1 /* success.m4a in Resources */,
+				01DAF6FC298B9FA3002860F1 /* chimeup.mp3 in Resources */,
 				012BACE4298968EB00BD2C44 /* Preview Assets.xcassets in Resources */,
 				012BACE1298968EB00BD2C44 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01DAF700298B9FD6002860F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,15 +274,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				012BACF829896B3700BD2C44 /* GameModel.swift in Sources */,
+				01DAF6F7298B9A4D002860F1 /* AudioService.swift in Sources */,
+				01DAF6F9298B9C3D002860F1 /* AudioViewModel.swift in Sources */,
+				012BACF829896B3700BD2C44 /* CardModel.swift in Sources */,
 				012BACE6298968EB00BD2C44 /* Persistence.swift in Sources */,
 				012BACE9298968EB00BD2C44 /* Memorize.xcdatamodeld in Sources */,
 				012BACDF298968EA00BD2C44 /* ContentView.swift in Sources */,
+				01DAF6EF298B983D002860F1 /* DeckGenerator.swift in Sources */,
+				01DAF6F1298B986A002860F1 /* DeckViewModel.swift in Sources */,
 				012BACDD298968EA00BD2C44 /* MemorizeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		01DAF6FE298B9FD6002860F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01DAF705298B9FD6002860F1 /* MemorizeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		01DAF707298B9FD6002860F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 012BACD8298968EA00BD2C44 /* Memorize */;
+			targetProxy = 01DAF706298B9FD6002860F1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		012BACEA298968EB00BD2C44 /* Debug */ = {
@@ -377,6 +477,42 @@
 			};
 			name = Release;
 		};
+		01DAF709298B9FD6002860F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4NUH9696GL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.valdal14.MemorizeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Memorize.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Memorize";
+			};
+			name = Debug;
+		};
+		01DAF70A298B9FD6002860F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4NUH9696GL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.valdal14.MemorizeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Memorize.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Memorize";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -394,6 +530,15 @@
 			buildConfigurations = (
 				012BACED298968EB00BD2C44 /* Debug */,
 				012BACEE298968EB00BD2C44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01DAF708298B9FD6002860F1 /* Build configuration list for PBXNativeTarget "MemorizeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01DAF709298B9FD6002860F1 /* Debug */,
+				01DAF70A298B9FD6002860F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
