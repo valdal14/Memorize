@@ -18,6 +18,8 @@ class AudioService: AudioPlayerService {
 	func playSoundUsing(fileName: String, fileExtension: String) throws {
 		if let path = Bundle.main.path(forResource: fileName, ofType: fileExtension) {
 			audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+			audioPlayer?.volume = 0.5
+			audioPlayer?.numberOfLoops = -1
 			audioPlayer?.play()
 		}
 	}

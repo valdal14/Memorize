@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0100FEC8299004FB0067F766 /* UserSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100FEC7299004FB0067F766 /* UserSelectionView.swift */; };
 		012BACDD298968EA00BD2C44 /* MemorizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BACDC298968EA00BD2C44 /* MemorizeApp.swift */; };
 		012BACDF298968EA00BD2C44 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BACDE298968EA00BD2C44 /* ContentView.swift */; };
 		012BACE1298968EB00BD2C44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 012BACE0298968EB00BD2C44 /* Assets.xcassets */; };
@@ -14,6 +15,8 @@
 		012BACE6298968EB00BD2C44 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BACE5298968EB00BD2C44 /* Persistence.swift */; };
 		012BACE9298968EB00BD2C44 /* Memorize.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 012BACE7298968EB00BD2C44 /* Memorize.xcdatamodeld */; };
 		012BACF829896B3700BD2C44 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BACF729896B3700BD2C44 /* CardModel.swift */; };
+		018BD207298E6A1500CE7556 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018BD206298E6A1500CE7556 /* OnboardingView.swift */; };
+		018BD20A298E6C6F00CE7556 /* soundtrack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 018BD209298E6C6E00CE7556 /* soundtrack.mp3 */; };
 		01DAF6EF298B983D002860F1 /* DeckGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6EE298B983D002860F1 /* DeckGenerator.swift */; };
 		01DAF6F1298B986A002860F1 /* DeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6F0298B986A002860F1 /* DeckViewModel.swift */; };
 		01DAF6F7298B9A4D002860F1 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6F6298B9A4D002860F1 /* AudioService.swift */; };
@@ -34,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0100FEC7299004FB0067F766 /* UserSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSelectionView.swift; sourceTree = "<group>"; };
 		012BACD9298968EA00BD2C44 /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		012BACDC298968EA00BD2C44 /* MemorizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeApp.swift; sourceTree = "<group>"; };
 		012BACDE298968EA00BD2C44 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,6 +46,8 @@
 		012BACE5298968EB00BD2C44 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		012BACE8298968EB00BD2C44 /* Memorize.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memorize.xcdatamodel; sourceTree = "<group>"; };
 		012BACF729896B3700BD2C44 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		018BD206298E6A1500CE7556 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		018BD209298E6C6E00CE7556 /* soundtrack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundtrack.mp3; sourceTree = "<group>"; };
 		01DAF6EE298B983D002860F1 /* DeckGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckGenerator.swift; sourceTree = "<group>"; };
 		01DAF6F0298B986A002860F1 /* DeckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewModel.swift; sourceTree = "<group>"; };
 		01DAF6F6298B9A4D002860F1 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
@@ -114,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				012BACDE298968EA00BD2C44 /* ContentView.swift */,
+				018BD208298E6B6E00CE7556 /* Onboarding */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -139,6 +146,7 @@
 		012BACF4298969AE00BD2C44 /* Asset */ = {
 			isa = PBXGroup;
 			children = (
+				018BD209298E6C6E00CE7556 /* soundtrack.mp3 */,
 				01DAF6FA298B9FA2002860F1 /* chimeup.mp3 */,
 				01DAF6FB298B9FA3002860F1 /* success.m4a */,
 				012BACE0298968EB00BD2C44 /* Assets.xcassets */,
@@ -162,6 +170,15 @@
 				012BACE7298968EB00BD2C44 /* Memorize.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		018BD208298E6B6E00CE7556 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				018BD206298E6A1500CE7556 /* OnboardingView.swift */,
+				0100FEC7299004FB0067F766 /* UserSelectionView.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		01DAF703298B9FD6002860F1 /* MemorizeTests */ = {
@@ -257,6 +274,7 @@
 				01DAF6FC298B9FA3002860F1 /* chimeup.mp3 in Resources */,
 				012BACE4298968EB00BD2C44 /* Preview Assets.xcassets in Resources */,
 				012BACE1298968EB00BD2C44 /* Assets.xcassets in Resources */,
+				018BD20A298E6C6F00CE7556 /* soundtrack.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,10 +295,12 @@
 				01DAF6F7298B9A4D002860F1 /* AudioService.swift in Sources */,
 				01DAF6F9298B9C3D002860F1 /* AudioViewModel.swift in Sources */,
 				012BACF829896B3700BD2C44 /* CardModel.swift in Sources */,
+				018BD207298E6A1500CE7556 /* OnboardingView.swift in Sources */,
 				012BACE6298968EB00BD2C44 /* Persistence.swift in Sources */,
 				012BACE9298968EB00BD2C44 /* Memorize.xcdatamodeld in Sources */,
 				012BACDF298968EA00BD2C44 /* ContentView.swift in Sources */,
 				01DAF6EF298B983D002860F1 /* DeckGenerator.swift in Sources */,
+				0100FEC8299004FB0067F766 /* UserSelectionView.swift in Sources */,
 				01DAF6F1298B986A002860F1 /* DeckViewModel.swift in Sources */,
 				012BACDD298968EA00BD2C44 /* MemorizeApp.swift in Sources */,
 			);
@@ -433,8 +453,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -442,9 +462,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.valdal14.Memorize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -462,8 +485,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -471,9 +494,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.valdal14.Memorize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
