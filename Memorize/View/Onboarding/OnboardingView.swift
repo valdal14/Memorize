@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct OnboardingView: View {
-	@Environment(\.managedObjectContext) private var viewContext
 	@State private var currentTab = 0
-	@Binding var showNext: Bool
+	@State var showNext: Bool = false
 	
 	var body: some View {
 		TabView(selection: $currentTab,
@@ -33,8 +32,7 @@ struct OnboardingView: View {
 struct OnboardingView_Previews: PreviewProvider {
 	@State static var showNext: Bool = false
 	static var previews: some View {
-		OnboardingView(showNext: $showNext)
-			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+		OnboardingView(showNext: showNext)
 			.preferredColorScheme(.light)
 	}
 }
@@ -42,8 +40,7 @@ struct OnboardingView_Previews: PreviewProvider {
 struct DarkOnboardingView_Previews: PreviewProvider {
 	@State static var showNext: Bool = false
 	static var previews: some View {
-		OnboardingView(showNext: $showNext)
-			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+		OnboardingView(showNext: showNext)
 			.preferredColorScheme(.dark)
 	}
 }

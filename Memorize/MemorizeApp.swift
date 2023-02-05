@@ -11,11 +11,10 @@ import SwiftUI
 struct MemorizeApp: App {
     let persistenceController = PersistenceController.shared
 	let audioPlayer = AudioService()
-	@State var showNext: Bool = false
 	
     var body: some Scene {
         WindowGroup {
-			OnboardingView(showNext: $showNext)
+			OnboardingView()
 				.onAppear {
 					try? audioPlayer.playSoundUsing(fileName: "soundtrack", fileExtension: "mp3")
 				}

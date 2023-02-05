@@ -1,5 +1,5 @@
 //
-//  GameModel.swift
+//  DeckBuilderModel.swift
 //  Memorize
 //
 //  Created by Valerio D'ALESSIO on 31/1/23.
