@@ -1,5 +1,5 @@
 //
-//  GameOptionView.swift
+//  DeckPickerView.swift
 //  Memorize
 //
 //  Created by Valerio D'ALESSIO on 6/2/23.
@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-struct GameOptionView: View {
+struct DeckPickerView: View {
 	@Environment(\.dismiss) var dismiss
-	@State private var presentCardSelection = false
-	@State private var cardTypeString = ""
-	@State private var selectedCardType: CardType?
+	@Binding var cardType: String
 	
     var body: some View {
 		ZStack {
@@ -23,14 +21,8 @@ struct GameOptionView: View {
 					.frame(width: 150, height: 150)
 				Spacer()
 				/// Select the Card
-				Text("Select Deck Theme")
+				Text("Select \(cardType) Deck")
 					.font(.title)
-					.foregroundColor(.accentColor)
-					.padding(.bottom, 5)
-				Text("emoji - symbol - images")
-					.kerning(3)
-					.fontWeight(.ultraLight)
-					.font(.callout)
 					.foregroundColor(.accentColor)
 				HStack(spacing: 30) {
 					Circle()
@@ -42,8 +34,7 @@ struct GameOptionView: View {
 								.font(.title2)
 						}
 						.onTapGesture {
-							cardTypeString = "Emoji"
-							presentCardSelection.toggle()
+							
 						}
 					Circle()
 						.fill(Color.accentColor)
@@ -55,8 +46,7 @@ struct GameOptionView: View {
 								.font(.title2)
 						}
 						.onTapGesture {
-							cardTypeString = "Symbol"
-							presentCardSelection.toggle()
+						
 						}
 					Circle()
 						.fill(Color.accentColor)
@@ -71,8 +61,7 @@ struct GameOptionView: View {
 								.font(.title2)
 						}
 						.onTapGesture {
-							cardTypeString = "Image"
-							presentCardSelection.toggle()
+							
 						}
 				}
 				.padding()
@@ -94,14 +83,13 @@ struct GameOptionView: View {
 			.padding(30)
 		}
 		.edgesIgnoringSafeArea(.all)
-		.sheet(isPresented: $presentCardSelection) {
-			DeckPickerView(cardType: $cardTypeString)
-		}
     }
 }
 
-struct GameOptionView_Previews: PreviewProvider {
+struct DeckPickerView_Previews: PreviewProvider {
+	@State static var cardType: String = "Emoji"
+	
     static var previews: some View {
-        GameOptionView()
+		DeckPickerView(cardType: $cardType)
     }
 }
