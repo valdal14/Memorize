@@ -8,16 +8,9 @@
 import SwiftUI
 
 struct UserSelectionView: View {
-	@State private var username: String = ""
-	@State private var isTextFieldDisabled = false
-	@State private var isSaveButtonDisable = true
-	@State private var isNewGameDisabled = true
 	@FocusState private var isFocused: Bool
 	@StateObject var onboardingVM = OnboardingViewModel()
-	@State private var player: Player?
-	@State private var showError = false
-	@State private var selectedName: String = ""
-	@State private var showNext = false
+	@StateObject var wrapper = UserSelectionPropertyWrapper()
 	
 	var body: some View {
 		ZStack {
@@ -28,24 +21,25 @@ struct UserSelectionView: View {
 					.resizable()
 					.frame(width: 150, height: 150)
 				Spacer()
-				if let player = player?.username, let wasLoaded = !player.isEmpty {
+				if let player = wrapper.player?.username, let wasLoaded = !player.isEmpty {
 					if wasLoaded {
 						Text("Welcome \(player)")
 							.font(.headline)
 							.foregroundColor(.accentColor)
 					}
 				} else {
+					/// New Player Section
 					HStack {
-						TextField(text: $username, label: {
+						TextField(text: $wrapper.username, label: {
 							Text("enter your name")
 						})
-						.disabled(isTextFieldDisabled)
-						.onChange(of: username, perform: { newPlayer in
+						.disabled(wrapper.isTextFieldDisabled)
+						.onChange(of: wrapper.username, perform: { newPlayer in
 							if newPlayer.count > 3 {
-								isSaveButtonDisable = false
-								selectedName = newPlayer
+								wrapper.isSaveButtonDisable = false
+								wrapper.selectedName = newPlayer
 							} else {
-								isSaveButtonDisable = true
+								wrapper.isSaveButtonDisable = true
 							}
 						})
 						.foregroundColor(.accentColor)
@@ -54,22 +48,22 @@ struct UserSelectionView: View {
 						
 						Button {
 							/// save the selected player
-							onboardingVM.validateUsername(username: selectedName)
+							onboardingVM.validateUsername(username: wrapper.selectedName)
 							/// get the last player name
 							loadPlayer()
 							DispatchQueue.main.async {
 								if let _ = onboardingVM.chosenPlayerName {
-									isTextFieldDisabled = false
-									isSaveButtonDisable = false
+									wrapper.isTextFieldDisabled = false
+									wrapper.isSaveButtonDisable = false
 								} else {
-									showError = true
+									wrapper.showError = true
 								}
 							}
 							
 						} label: {
 							Text("save")
 						}
-						.disabled(isSaveButtonDisable)
+						.disabled(wrapper.isSaveButtonDisable)
 						.buttonStyle(.borderedProminent)
 						.cornerRadius(15)
 						.buttonStyle(.borderedProminent)
@@ -77,17 +71,34 @@ struct UserSelectionView: View {
 						
 					}
 					.padding()
+					/// End of New Player Section
 				}
+				/// New Game Button
 				Button {
 					/// Start a new game
-					showNext = true
+					wrapper.showNext = true
 				} label: {
 					Text("Start New Game")
 				}
-				.disabled(isNewGameDisabled)
+				.disabled( wrapper.isNewGameDisabled)
 				.cornerRadius(15)
 				.buttonStyle(.borderedProminent)
 				.tint(.accentColor)
+				/// Check if current player has saved games
+				if !onboardingVM.playerSavedgames.isEmpty {
+					Button {
+						/// show saved games
+					} label: {
+						Text("Load games")
+					}
+					.disabled(wrapper.isSaveButtonDisable)
+					.buttonStyle(.borderedProminent)
+					.cornerRadius(15)
+					.buttonStyle(.borderedProminent)
+					.tint(.accentColor)
+					.padding()
+
+				}
 				Spacer()
 				
 			}
@@ -97,11 +108,7 @@ struct UserSelectionView: View {
 			}
 			.padding(30)
 		}
-		.alert(isPresented: $onboardingVM.wasErrorRegistered, content: {
-			Alert(title: Text("Memorize"),
-				  message: Text("\(OnboardingError.errorGettingLastPlayer.rawValue)"),
-				  dismissButton: .default(Text("Okay")))
-		})
+		.presentErrorWith(state: $wrapper.showError, message: MemorizeError.coreDataError.rawValue)
 		.edgesIgnoringSafeArea(.all)
 	}
 	
@@ -110,14 +117,14 @@ struct UserSelectionView: View {
 	private func loadPlayer() {
 		let lastPlayer = onboardingVM.getLastUser()
 		if let lastPlayer {
-			player = lastPlayer
+			wrapper.player = lastPlayer
 			DispatchQueue.main.async {
-				isTextFieldDisabled = true
-				isNewGameDisabled = false
+				wrapper.isTextFieldDisabled = true
+				wrapper.isNewGameDisabled = false
 			}
 		} else {
 			DispatchQueue.main.async {
-				isTextFieldDisabled = false
+				wrapper.isTextFieldDisabled = false
 				isFocused = true
 			}
 		}

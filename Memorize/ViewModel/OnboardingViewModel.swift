@@ -8,21 +8,18 @@
 import CoreData
 import Foundation
 
-enum OnboardingError: String {
-	case errorGettingLastPlayer = "Error: 101 - Cannot get user profile from internal storage"
-	case errorSavingPlayer = "Error: 102 - Cannot save username"
-	case duplicatedPlayerName = "Error: 103 - Player name already exists, please select a different player name"
-}
-
 class OnboardingViewModel: ObservableObject {
 	@Published var chosenPlayerName: String?
 	@Published var wasErrorRegistered: Bool = false
+	@Published var playerSavedgames: [Card] = []
 	
 	func getLastUser() -> Player? {
 		let request = NSFetchRequest<Player>(entityName: "Player") as NSFetchRequest<Player>
 		let players = try? PersistenceController.shared.container.viewContext.fetch(request)
 		let player = players?.last
 		if let player {
+			let games = player.games?.allObjects as! [Card]
+			playerSavedgames = games.reversed()
 			return player
 		} else {
 			return nil
