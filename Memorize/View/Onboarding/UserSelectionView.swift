@@ -76,7 +76,7 @@ struct UserSelectionView: View {
 				/// New Game Button
 				Button {
 					/// Start a new game
-					wrapper.showNext = true
+					wrapper.presentGameOptionView.toggle()
 				} label: {
 					Text("Start New Game")
 				}
@@ -88,6 +88,7 @@ struct UserSelectionView: View {
 				if !onboardingVM.playerSavedgames.isEmpty {
 					Button {
 						/// show saved games
+						wrapper.presentSavedGamesView.toggle()
 					} label: {
 						Text("Load games")
 					}
@@ -110,6 +111,9 @@ struct UserSelectionView: View {
 		}
 		.presentErrorWith(state: $wrapper.showError, message: MemorizeError.coreDataError.rawValue)
 		.edgesIgnoringSafeArea(.all)
+		/// present new screens
+		.fullScreenCover(isPresented: $wrapper.presentGameOptionView, content: GameOptionView.init)
+		.fullScreenCover(isPresented: $wrapper.presentSavedGamesView, content: SavedGameView.init)
 	}
 	
 	//MARK: - Helper function

@@ -14,7 +14,7 @@ struct MemorizeApp: App {
 	
     var body: some Scene {
         WindowGroup {
-			OnboardingView()
+			UserSelectionView()
 				.onAppear {
 					try? audioPlayer.playSoundUsing(fileName: "soundtrack", fileExtension: "mp3")
 				}
