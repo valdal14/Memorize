@@ -9,7 +9,12 @@ import SwiftUI
 
 struct DeckPickerView: View {
 	@Environment(\.dismiss) var dismiss
+	@EnvironmentObject var deckVM: DeckViewModel
+	
 	@Binding var cardType: String
+	@Binding var level: Int
+	
+	@State private var showError: Bool = false
 	
     var body: some View {
 		ZStack {
@@ -25,44 +30,43 @@ struct DeckPickerView: View {
 					.font(.title)
 					.foregroundColor(.accentColor)
 				HStack(spacing: 30) {
-					Circle()
-						.fill(Color.accentColor)
-						.frame(width: 70, height: 70)
-						.shadow(radius: 10)
-						.overlay {
-							Text("🐶")
-								.font(.title2)
+					/// show cards
+					if cardType == "Emoji" {
+						ForEach(deckVM.deckOptions, id: \.self) { str in
+							Circle()
+								.fill(Color.accentColor)
+								.frame(width: 70, height: 70)
+								.shadow(radius: 10)
+								.overlay {
+									Text(str)
+										.font(.title2)
+								}
+								.onTapGesture {
+									// Start a new game
+								}
 						}
-						.onTapGesture {
-							
+					}
+					
+					if cardType == "Symbol" {
+						ForEach(deckVM.deckOptions, id: \.self) { str in
+							Circle()
+								.fill(Color.accentColor)
+								.frame(width: 70, height: 70)
+								.shadow(radius: 10)
+								.overlay {
+									Image(systemName: "\(str)")
+										.foregroundColor(.white)
+										.font(.title2)
+								}
+								.onTapGesture {
+									// Start a new game
+								}
 						}
-					Circle()
-						.fill(Color.accentColor)
-						.frame(width: 70, height: 70)
-						.shadow(radius: 10)
-						.overlay {
-							Image(systemName: "playstation.logo")
-								.foregroundColor(.white)
-								.font(.title2)
-						}
-						.onTapGesture {
-						
-						}
-					Circle()
-						.fill(Color.accentColor)
-						.frame(width: 70, height: 70)
-						.shadow(radius: 10)
-						.overlay {
-							Image("images")
-								.resizable()
-								.scaledToFit()
-								.frame(width: 45, height: 45)
-								.foregroundColor(.white)
-								.font(.title2)
-						}
-						.onTapGesture {
-							
-						}
+					}
+					/// API toDO
+					if cardType == "Image" {
+						Text(cardType)
+					}
 				}
 				.padding()
 				
@@ -82,14 +86,18 @@ struct DeckPickerView: View {
 			}
 			.padding(30)
 		}
+		.onAppear {
+			deckVM.presentDeckOption(cardType: cardType)
+		}
 		.edgesIgnoringSafeArea(.all)
     }
 }
 
 struct DeckPickerView_Previews: PreviewProvider {
 	@State static var cardType: String = "Emoji"
+	@State static var level: Int = 6
 	
     static var previews: some View {
-		DeckPickerView(cardType: $cardType)
+		DeckPickerView(cardType: $cardType, level: $level)
     }
 }

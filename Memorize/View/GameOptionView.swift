@@ -9,9 +9,12 @@ import SwiftUI
 
 struct GameOptionView: View {
 	@Environment(\.dismiss) var dismiss
+	@EnvironmentObject var deckVM: DeckViewModel
+	
 	@State private var presentCardSelection = false
 	@State private var cardTypeString = ""
 	@State private var selectedCardType: CardType?
+	@Binding var level: Int
 	
     var body: some View {
 		ZStack {
@@ -50,7 +53,7 @@ struct GameOptionView: View {
 						.frame(width: 70, height: 70)
 						.shadow(radius: 10)
 						.overlay {
-							Image(systemName: "playstation.logo")
+							Image(systemName: "gamecontroller.fill")
 								.foregroundColor(.white)
 								.font(.title2)
 						}
@@ -95,13 +98,15 @@ struct GameOptionView: View {
 		}
 		.edgesIgnoringSafeArea(.all)
 		.sheet(isPresented: $presentCardSelection) {
-			DeckPickerView(cardType: $cardTypeString)
+			DeckPickerView(cardType: $cardTypeString, level: $level)
 		}
     }
 }
 
 struct GameOptionView_Previews: PreviewProvider {
+	@State static var level: Int = 6
+	
     static var previews: some View {
-        GameOptionView()
+		GameOptionView(level: $level)
     }
 }

@@ -16,6 +16,7 @@
 		012BACE6298968EB00BD2C44 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BACE5298968EB00BD2C44 /* Persistence.swift */; };
 		012BACE9298968EB00BD2C44 /* Memorize.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 012BACE7298968EB00BD2C44 /* Memorize.xcdatamodeld */; };
 		012BACF829896B3700BD2C44 /* DeckBuilderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BACF729896B3700BD2C44 /* DeckBuilderModel.swift */; };
+		01510EA429921B1500AB8E9B /* LevelOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01510EA329921B1500AB8E9B /* LevelOptionView.swift */; };
 		018BD20A298E6C6F00CE7556 /* soundtrack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 018BD209298E6C6E00CE7556 /* soundtrack.mp3 */; };
 		01B761282990CC2B00DC964B /* UIErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B761272990CC2B00DC964B /* UIErrorHandler.swift */; };
 		01B7612A2990D0E300DC964B /* UserSelectionPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B761292990D0E300DC964B /* UserSelectionPropertyWrapper.swift */; };
@@ -56,6 +57,7 @@
 		012BACE5298968EB00BD2C44 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		012BACE8298968EB00BD2C44 /* Memorize.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memorize.xcdatamodel; sourceTree = "<group>"; };
 		012BACF729896B3700BD2C44 /* DeckBuilderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckBuilderModel.swift; sourceTree = "<group>"; };
+		01510EA329921B1500AB8E9B /* LevelOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelOptionView.swift; sourceTree = "<group>"; };
 		018BD209298E6C6E00CE7556 /* soundtrack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundtrack.mp3; sourceTree = "<group>"; };
 		01B761272990CC2B00DC964B /* UIErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIErrorHandler.swift; sourceTree = "<group>"; };
 		01B761292990D0E300DC964B /* UserSelectionPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSelectionPropertyWrapper.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				01B7614B2990DEEC00DC964B /* GameOptionView.swift */,
 				01B7614D2990E01C00DC964B /* SavedGameView.swift */,
 				01B7614F2990EACF00DC964B /* DeckPickerView.swift */,
+				01510EA329921B1500AB8E9B /* LevelOptionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				01B761472990DC2800DC964B /* Game+CoreDataClass.swift in Sources */,
 				01DAF6EF298B983D002860F1 /* DeckGenerator.swift in Sources */,
 				0100FEC8299004FB0067F766 /* UserSelectionView.swift in Sources */,
+				01510EA429921B1500AB8E9B /* LevelOptionView.swift in Sources */,
 				01B761492990DC2800DC964B /* Player+CoreDataClass.swift in Sources */,
 				01DAF6F1298B986A002860F1 /* DeckViewModel.swift in Sources */,
 				012BACDD298968EA00BD2C44 /* MemorizeApp.swift in Sources */,

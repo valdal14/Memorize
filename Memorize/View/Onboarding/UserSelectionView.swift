@@ -75,7 +75,6 @@ struct UserSelectionView: View {
 				}
 				/// New Game Button
 				Button {
-					/// Start a new game
 					wrapper.presentGameOptionView.toggle()
 				} label: {
 					Text("Start New Game")
@@ -112,7 +111,7 @@ struct UserSelectionView: View {
 		.presentErrorWith(state: $wrapper.showError, message: MemorizeError.coreDataError.rawValue)
 		.edgesIgnoringSafeArea(.all)
 		/// present new screens
-		.fullScreenCover(isPresented: $wrapper.presentGameOptionView, content: GameOptionView.init)
+		.fullScreenCover(isPresented: $wrapper.presentGameOptionView, content: LevelOptionView.init)
 		.fullScreenCover(isPresented: $wrapper.presentSavedGamesView, content: SavedGameView.init)
 	}
 	

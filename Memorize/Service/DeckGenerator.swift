@@ -17,7 +17,7 @@ protocol DeckGeneratorService {
 	func shuffleDeckGenerator(selectedType: CardType, difficultyLevel: GameLevel) -> [String]
 }
 
-class DeckGenerator: DeckGeneratorService {
+public class DeckGenerator: DeckGeneratorService {
 	func shuffleDeckGenerator(selectedType: CardType, difficultyLevel: GameLevel) -> [String] {
 		var deck: [String] = []
 		var shuffleDeck: [String] = []
