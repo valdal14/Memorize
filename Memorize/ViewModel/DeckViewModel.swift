@@ -12,14 +12,15 @@ class DeckViewModel: ObservableObject {
 	
 	@Published private(set) var difficulties: [Int] = []
 	@Published private(set) var deckOptions: [String] = []
+	@Published private(set) var inGameDeck: [String] = []
 	
 	init(deckGenerator: DeckGeneratorService) {
 		self.deckGenerator = deckGenerator
 		presentDifficultyLevel()
 	}
 	
-	func shuffleDeck(selectedType: CardType, difficultyLevel: GameLevel) -> [String] {
-		return deckGenerator.shuffleDeckGenerator(selectedType: selectedType, difficultyLevel: difficultyLevel)
+	func shuffleDeck(selectedType: CardType, difficultyLevel: GameLevel) {
+		inGameDeck = deckGenerator.shuffleDeckGenerator(selectedType: selectedType, difficultyLevel: difficultyLevel)
 	}
 	
 	func presentDifficultyLevel() {
