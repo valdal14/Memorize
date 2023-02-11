@@ -20,7 +20,7 @@ class SoundPlayer {
 	
 	func playSound(fileName: String, fileExtension: String) throws {
 		do {
-			try audioService.playSoundUsing(fileName: fileName, fileExtension: fileExtension)
+			try audioService.playBackgroundMusic(fileName: fileName, fileExtension: fileExtension)
 		} catch {
 			throw AudioPlayerError.audioError
 		}

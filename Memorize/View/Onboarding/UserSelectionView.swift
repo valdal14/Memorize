@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct UserSelectionView: View {
+	@EnvironmentObject var audioPlayer: AudioService
 	@FocusState private var isFocused: Bool
 	@StateObject var onboardingVM = OnboardingViewModel()
 	@StateObject var wrapper = UserSelectionPropertyWrapper()

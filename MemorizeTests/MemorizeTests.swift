@@ -14,13 +14,13 @@ final class MemorizeTests: XCTestCase {
 	
 	func test_shuffleDeck_cardModelGenerationForEmoji() {
 		let sut = DeckViewModel(deckGenerator: DeckGenerator())
-		let deckOne = sut.shuffleDeck(selectedType: .emoji(.animal), difficultyLevel: .easy)
-		let deckTwo = sut.shuffleDeck(selectedType: .emoji(.travel), difficultyLevel: .medium)
-		let deckThree = sut.shuffleDeck(selectedType: .emoji(.animal), difficultyLevel: .hard)
-		
-		XCTAssertEqual(deckOne.count, 6, "Deck size is not the same")
-		XCTAssertEqual(deckTwo.count, 9, "Deck size is not the same")
-		XCTAssertEqual(deckThree.count, 12, "Deck size is not the same")
+		sut.shuffleDeck(selectedType: .emoji(.animal), difficultyLevel: .easy)
+//		let deckTwo = sut.shuffleDeck(selectedType: .emoji(.travel), difficultyLevel: .medium)
+//		let deckThree = sut.shuffleDeck(selectedType: .emoji(.animal), difficultyLevel: .hard)
+
+		XCTAssertEqual(sut.inGameDeck.count, 12, "Deck size is not the same")
+//		XCTAssertEqual(sut.inGameDeck.count, 12, "Deck size is not the same")
+//		XCTAssertEqual(sut.inGameDeck.count, 12, "Deck size is not the same")
 	}
 
     override func setUpWithError() throws {

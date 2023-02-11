@@ -82,9 +82,9 @@ struct PictureStorage {
 }
 
 enum GameLevel: Int, CaseIterable {
-	case easy = 6
-	case medium = 9
-	case hard = 12
+	case easy = 2
+	case medium = 4
+	case hard = 8
 }
 
 enum CardType {

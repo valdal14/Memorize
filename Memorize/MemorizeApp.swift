@@ -16,9 +16,10 @@ struct MemorizeApp: App {
         WindowGroup {
 			UserSelectionView()
 				.onAppear {
-					try? audioPlayer.playSoundUsing(fileName: "soundtrack", fileExtension: "mp3")
+					try? audioPlayer.playBackgroundMusic(fileName: "soundtrack", fileExtension: "mp3")
 				}
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+				.environmentObject(audioPlayer)
         }
     }
 }

@@ -14,7 +14,7 @@ struct GameOptionView: View {
 	@State private var presentCardSelection = false
 	@State private var cardTypeString = ""
 	@State private var selectedCardType: CardType?
-	@Binding var level: Int
+	@Binding var level: GameLevel
 	
     var body: some View {
 		ZStack {
@@ -98,13 +98,13 @@ struct GameOptionView: View {
 		}
 		.edgesIgnoringSafeArea(.all)
 		.sheet(isPresented: $presentCardSelection) {
-			DeckPickerView(cardType: $cardTypeString, level: $level)
+			DeckPickerView(cardTypeString: $cardTypeString, level: $level)
 		}
     }
 }
 
 struct GameOptionView_Previews: PreviewProvider {
-	@State static var level: Int = 6
+	@State static var level: GameLevel = .easy
 	
     static var previews: some View {
 		GameOptionView(level: $level)

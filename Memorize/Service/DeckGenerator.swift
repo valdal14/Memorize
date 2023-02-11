@@ -21,7 +21,7 @@ public class DeckGenerator: DeckGeneratorService {
 	func shuffleDeckGenerator(selectedType: CardType, difficultyLevel: GameLevel) -> [String] {
 		var deck: [String] = []
 		var shuffleDeck: [String] = []
-		
+	
 		switch selectedType {
 		case .emoji:
 			shuffleDeck = selectedType.symbols.shuffled()
@@ -31,10 +31,13 @@ public class DeckGenerator: DeckGeneratorService {
 			shuffleDeck = selectedType.symbols.shuffled()
 		}
 		
-		for cardAtIndex in 0..<difficultyLevel.rawValue {
-			deck.append(shuffleDeck[cardAtIndex])
+		while deck.count != difficultyLevel.rawValue {
+			let index = Int.random(in: 0..<difficultyLevel.rawValue)
+			if !deck.contains(shuffleDeck[index]) {
+				deck.append(shuffleDeck[index])
+			}
 		}
 		
-		return deck
+		return (deck + deck.shuffled()).shuffled()
 	}
 }

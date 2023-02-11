@@ -10,7 +10,7 @@ import SwiftUI
 struct LevelOptionView: View {
 	@Environment(\.dismiss) var dismiss
 	@StateObject var deckVM: DeckViewModel = DeckViewModel(deckGenerator: DeckGenerator())
-	@State private var selectedDifficulty: Int = 0
+	@State private var selectedDifficulty: GameLevel = .easy
 	@State private var presentLevelView: Bool = false
 	
 	var body: some View {
@@ -27,6 +27,11 @@ struct LevelOptionView: View {
 					.font(.title)
 					.foregroundColor(.accentColor)
 					.padding(.bottom, 5)
+				Text("easy - medium - hard")
+					.kerning(4)
+					.fontWeight(.ultraLight)
+					.font(.callout)
+					.foregroundColor(.accentColor)
 				/// Difficulty Level
 				HStack(spacing: 30) {
 					ForEach(deckVM.difficulties, id: \.self) { value in
@@ -35,12 +40,21 @@ struct LevelOptionView: View {
 							.frame(width: 70, height: 70)
 							.shadow(radius: 10)
 							.overlay {
-								Text("\(value)")
+								Text("\(value * 2)")
 									.font(.headline)
 									.foregroundColor(.white)
 							}
 							.onTapGesture {
-								selectedDifficulty = value
+								switch value {
+								case 2:
+									selectedDifficulty = .easy
+								case 4:
+									selectedDifficulty = .medium
+								case 8:
+									selectedDifficulty = .hard
+								default:
+									selectedDifficulty = .easy
+								}
 								presentLevelView.toggle()
 							}
 					}
