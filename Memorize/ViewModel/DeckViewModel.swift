@@ -94,10 +94,12 @@ class DeckViewModel: ObservableObject {
 		self.isGameEnded.toggle()
 	}
 	
-	func restartGame() {
-		isGameEnded.toggle()
+	func restartGame(selectedType: CardType, difficultyLevel: GameLevel) {
 		guessCounter = 0
+		inGameDeck = []
 		guessedCard = []
 		cards = []
+		shuffleDeck(selectedType: selectedType, difficultyLevel: difficultyLevel)
+		isGameEnded.toggle()
 	}
 }

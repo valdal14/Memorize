@@ -34,13 +34,26 @@ struct Memorize: View {
 				HStack(spacing: 20) {
 					Button("Play again") {
 						// restart the game
-						deckVM.restartGame()
+						deckVM.restartGame(selectedType: cardType, difficultyLevel: level)
 					}
 					.buttonStyle(.borderedProminent)
 					Button("Main menu") {
 						// change game
 					}
 					.buttonStyle(.borderedProminent)
+				}
+			} else {
+				ZStack {
+					Circle()
+						.fill(Color.accentColor)
+						.frame(width: 70, height: 70)
+						.shadow(radius: 10)
+					Image(systemName: "bookmark.fill")
+						.font(.system(size: 25))
+						.foregroundColor(Color.white)
+						.onTapGesture {
+							/// save the current game
+						}
 				}
 			}
 		}
