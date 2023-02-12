@@ -9,9 +9,10 @@ import SwiftUI
 
 struct LevelOptionView: View {
 	@Environment(\.dismiss) var dismiss
-	@StateObject var deckVM: DeckViewModel = DeckViewModel(deckGenerator: DeckGenerator())
+	@StateObject var deckVM: GameViewModel = GameViewModel(deckGenerator: DeckGenerator())
 	@State private var selectedDifficulty: GameLevel = .easy
 	@State private var presentLevelView: Bool = false
+	@Binding var player: Player?
 	
 	var body: some View {
 		ZStack {
@@ -77,7 +78,7 @@ struct LevelOptionView: View {
 		}
 		/// present new screens
 		.fullScreenCover(isPresented: $presentLevelView, content: {
-			GameOptionView(level: $selectedDifficulty)
+			GameOptionView(level: $selectedDifficulty, player: $player)
 		})
 		.edgesIgnoringSafeArea(.all)
 		.environmentObject(deckVM)
@@ -85,7 +86,8 @@ struct LevelOptionView: View {
 }
 
 struct LevelOptionView_Previews: PreviewProvider {
+	@State static var player: Player?
 	static var previews: some View {
-		LevelOptionView()
+		LevelOptionView(player: $player)
 	}
 }

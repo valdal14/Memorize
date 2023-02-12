@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GameCard: View {
 	@EnvironmentObject var audioPlayer: AudioService
-	@EnvironmentObject var deckVM: DeckViewModel
+	@EnvironmentObject var deckVM: GameViewModel
 	@State var cardName : String
 	@State var isFaceUp : Bool = false
 	@State var cardBackground = Color.accentColor

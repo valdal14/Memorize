@@ -31,7 +31,7 @@
 		01B7614E2990E01C00DC964B /* SavedGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7614D2990E01C00DC964B /* SavedGameView.swift */; };
 		01B761502990EACF00DC964B /* DeckPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7614F2990EACF00DC964B /* DeckPickerView.swift */; };
 		01DAF6EF298B983D002860F1 /* DeckGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6EE298B983D002860F1 /* DeckGenerator.swift */; };
-		01DAF6F1298B986A002860F1 /* DeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6F0298B986A002860F1 /* DeckViewModel.swift */; };
+		01DAF6F1298B986A002860F1 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6F0298B986A002860F1 /* GameViewModel.swift */; };
 		01DAF6F7298B9A4D002860F1 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6F6298B9A4D002860F1 /* AudioService.swift */; };
 		01DAF6F9298B9C3D002860F1 /* AudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6F8298B9C3D002860F1 /* AudioViewModel.swift */; };
 		01DAF6FC298B9FA3002860F1 /* chimeup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 01DAF6FA298B9FA2002860F1 /* chimeup.mp3 */; };
@@ -75,7 +75,7 @@
 		01B7614D2990E01C00DC964B /* SavedGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedGameView.swift; sourceTree = "<group>"; };
 		01B7614F2990EACF00DC964B /* DeckPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckPickerView.swift; sourceTree = "<group>"; };
 		01DAF6EE298B983D002860F1 /* DeckGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckGenerator.swift; sourceTree = "<group>"; };
-		01DAF6F0298B986A002860F1 /* DeckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewModel.swift; sourceTree = "<group>"; };
+		01DAF6F0298B986A002860F1 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		01DAF6F6298B9A4D002860F1 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
 		01DAF6F8298B9C3D002860F1 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
 		01DAF6FA298B9FA2002860F1 /* chimeup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chimeup.mp3; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 		012BACF32989695000BD2C44 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				01DAF6F0298B986A002860F1 /* DeckViewModel.swift */,
+				01DAF6F0298B986A002860F1 /* GameViewModel.swift */,
 				01DAF6F8298B9C3D002860F1 /* AudioViewModel.swift */,
 				0100FEDB299014C20067F766 /* OnboardingViewModel.swift */,
 			);
@@ -374,7 +374,7 @@
 				01510EA429921B1500AB8E9B /* LevelOptionView.swift in Sources */,
 				01B761492990DC2800DC964B /* Player+CoreDataClass.swift in Sources */,
 				01B46E6B299837C4001769EE /* ShowCardOptionView.swift in Sources */,
-				01DAF6F1298B986A002860F1 /* DeckViewModel.swift in Sources */,
+				01DAF6F1298B986A002860F1 /* GameViewModel.swift in Sources */,
 				012BACDD298968EA00BD2C44 /* MemorizeApp.swift in Sources */,
 				01B761482990DC2800DC964B /* Game+CoreDataProperties.swift in Sources */,
 				01B7612A2990D0E300DC964B /* UserSelectionPropertyWrapper.swift in Sources */,

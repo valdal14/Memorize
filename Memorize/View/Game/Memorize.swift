@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Memorize: View {
 	@Environment(\.dismiss) var dismiss
-	@EnvironmentObject var deckVM: DeckViewModel
+	@EnvironmentObject var gameVM: GameViewModel
 	
 	@State private var columns : [GridItem] = [GridItem(.fixed(90), spacing: 3, alignment: .center),
 											   GridItem(.fixed(90), spacing: 3, alignment: .center),
@@ -18,27 +18,28 @@ struct Memorize: View {
 	
 	@Binding var cardType: CardType
 	@Binding var level: GameLevel
-	
+	@Binding var player: Player?
 	
 	var body: some View {
 		LazyVGrid(columns: columns, alignment: .center, spacing: 4, content: {
 			ForEach(0..<(level.rawValue * 2), id: \.self) { index in
-				GameCard(cardName: deckVM.inGameDeck[index], cardType: $cardType, level: $level)
+				GameCard(cardName: gameVM.inGameDeck[index], cardType: $cardType, level: $level)
 			}
 		})
 		VStack {
-			if deckVM.isGameEnded {
-				Text("Number of guesses: \(deckVM.guessCounter)")
+			if gameVM.isGameEnded {
+				Text("Number of guesses: \(gameVM.guessCounter)")
 					.fontWidth(.compressed)
 					.font(.title)
 				HStack(spacing: 20) {
 					Button("Play again") {
 						// restart the game
-						deckVM.restartGame(selectedType: cardType, difficultyLevel: level)
+						gameVM.restartGame(selectedType: cardType, difficultyLevel: level)
 					}
 					.buttonStyle(.borderedProminent)
 					Button("Main menu") {
 						// change game
+						dismiss()
 					}
 					.buttonStyle(.borderedProminent)
 				}
@@ -53,6 +54,7 @@ struct Memorize: View {
 						.foregroundColor(Color.white)
 						.onTapGesture {
 							/// save the current game
+							
 						}
 				}
 			}
@@ -66,7 +68,8 @@ struct Memorize: View {
 struct Momorize_Previews: PreviewProvider {
 	@State static var cardType: CardType = CardType.emoji(.animal)
 	@State static var level: GameLevel = .easy
+	@State static var player: Player?
 	static var previews: some View {
-		Memorize(cardType: $cardType, level: $level)
+		Memorize(cardType: $cardType, level: $level, player: $player)
 	}
 }

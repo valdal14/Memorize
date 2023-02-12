@@ -13,7 +13,7 @@ final class MemorizeTests: XCTestCase {
 	
 	
 	func test_shuffleDeck_cardModelGenerationForEmoji() {
-		let sut = DeckViewModel(deckGenerator: DeckGenerator())
+		let sut = GameViewModel(deckGenerator: DeckGenerator())
 		sut.shuffleDeck(selectedType: .emoji(.animal), difficultyLevel: .easy)
 //		let deckTwo = sut.shuffleDeck(selectedType: .emoji(.travel), difficultyLevel: .medium)
 //		let deckThree = sut.shuffleDeck(selectedType: .emoji(.animal), difficultyLevel: .hard)

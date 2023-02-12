@@ -1,5 +1,5 @@
 //
-//  DeckViewModel.swift
+//  GameViewModel.swift
 //  Memorize
 //
 //  Created by Valerio D'ALESSIO on 2/2/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DeckViewModel: ObservableObject {
+class GameViewModel: ObservableObject {
 	
 	private let deckGenerator: DeckGeneratorService
 	
@@ -91,7 +91,7 @@ class DeckViewModel: ObservableObject {
 	}
 	
 	func endGame() {
-		self.isGameEnded = true
+		self.isGameEnded.toggle()
 	}
 	
 	func restartGame(selectedType: CardType, difficultyLevel: GameLevel) {
@@ -105,6 +105,6 @@ class DeckViewModel: ObservableObject {
 			guessedCard[index].cardName = cardString
 		}
 		guessedCard = []
-		self.isGameEnded = true
+		self.isGameEnded.toggle()
 	}
 }

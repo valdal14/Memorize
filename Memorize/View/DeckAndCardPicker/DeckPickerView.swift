@@ -9,11 +9,12 @@ import SwiftUI
 
 struct DeckPickerView: View {
 	@Environment(\.dismiss) var dismiss
-	@EnvironmentObject var deckVM: DeckViewModel
+	@EnvironmentObject var deckVM: GameViewModel
 	@EnvironmentObject var audioPlayer: AudioService
 	@Binding var cardTypeString: String
 	@Binding var level: GameLevel
 	@State private var showError: Bool = false
+	@Binding var player: Player?
 	
 	var body: some View {
 		ZStack {
@@ -30,7 +31,7 @@ struct DeckPickerView: View {
 					.foregroundColor(.accentColor)
 				HStack(spacing: 30) {
 					/// show cards
-					ShowCardOptionView(cardTypeString: $cardTypeString, level: $level)
+					ShowCardOptionView(cardTypeString: $cardTypeString, level: $level, player: $player)
 				}
 				.padding()
 				
@@ -60,8 +61,9 @@ struct DeckPickerView: View {
 struct DeckPickerView_Previews: PreviewProvider {
 	@State static var cardType: String = "Emoji"
 	@State static var level: GameLevel = .easy
+	@State static var player: Player?
 	
 	static var previews: some View {
-		DeckPickerView(cardTypeString: $cardType, level: $level)
+		DeckPickerView(cardTypeString: $cardType, level: $level, player: $player)
 	}
 }

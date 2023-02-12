@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ShowCardOptionView: View {
-	@EnvironmentObject var deckVM: DeckViewModel
+	@EnvironmentObject var deckVM: GameViewModel
 	@EnvironmentObject var audioPlayer: AudioService
 	@State private var startNewGame: Bool = false
 	
@@ -16,6 +16,7 @@ struct ShowCardOptionView: View {
 	@Binding var level: GameLevel
 	
 	@State private var card: CardType = CardType.emoji(.animal)
+	@Binding var player: Player?
 	
 	var body: some View {
 		ForEach(deckVM.deckOptions, id: \.self) { str in
@@ -47,7 +48,7 @@ struct ShowCardOptionView: View {
 				}
 				/// present new screens
 				.fullScreenCover(isPresented: $startNewGame, content: {
-					Memorize(cardType: $card, level: $level)
+					Memorize(cardType: $card, level: $level, player: $player)
 				})
 		}
 	}
@@ -63,7 +64,8 @@ struct ShowCardOptionView: View {
 struct ShowCardOptionView_Previews: PreviewProvider {
 	@State static var cardType: String = "Emoji"
 	@State static var level: GameLevel = .easy
+	@State static var player: Player?
 	static var previews: some View {
-		ShowCardOptionView(cardTypeString: $cardType, level: $level)
+		ShowCardOptionView(cardTypeString: $cardType, level: $level, player: $player)
 	}
 }

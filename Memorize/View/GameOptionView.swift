@@ -9,12 +9,13 @@ import SwiftUI
 
 struct GameOptionView: View {
 	@Environment(\.dismiss) var dismiss
-	@EnvironmentObject var deckVM: DeckViewModel
+	@EnvironmentObject var deckVM: GameViewModel
 	
 	@State private var presentCardSelection = false
 	@State private var cardTypeString = ""
 	@State private var selectedCardType: CardType?
 	@Binding var level: GameLevel
+	@Binding var player: Player?
 	
     var body: some View {
 		ZStack {
@@ -98,15 +99,16 @@ struct GameOptionView: View {
 		}
 		.edgesIgnoringSafeArea(.all)
 		.sheet(isPresented: $presentCardSelection) {
-			DeckPickerView(cardTypeString: $cardTypeString, level: $level)
+			DeckPickerView(cardTypeString: $cardTypeString, level: $level, player: $player)
 		}
     }
 }
 
 struct GameOptionView_Previews: PreviewProvider {
 	@State static var level: GameLevel = .easy
+	@State static var player: Player?
 	
     static var previews: some View {
-		GameOptionView(level: $level)
+		GameOptionView(level: $level, player: $player)
     }
 }
