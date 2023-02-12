@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ShowCardOptionView: View {
-	@EnvironmentObject var deckVM: GameViewModel
 	@EnvironmentObject var audioPlayer: AudioService
+	@EnvironmentObject var gameVM: GameViewModel
+	@EnvironmentObject var onboardingVM: OnboardingViewModel
 	@State private var startNewGame: Bool = false
 	
 	@Binding var cardTypeString: String
@@ -19,7 +20,7 @@ struct ShowCardOptionView: View {
 	@Binding var player: Player?
 	
 	var body: some View {
-		ForEach(deckVM.deckOptions, id: \.self) { str in
+		ForEach(gameVM.deckOptions, id: \.self) { str in
 			Circle()
 				.fill(Color.accentColor)
 				.frame(width: 70, height: 70)
@@ -41,8 +42,8 @@ struct ShowCardOptionView: View {
 					}
 				}
 				.onTapGesture {
-					if let deckIndex = deckVM.deckOptions.firstIndex(of: str) {
-						card = deckVM.createCardTypeFrom(cardName: cardTypeString, index: deckIndex)!
+					if let deckIndex = gameVM.deckOptions.firstIndex(of: str) {
+						card = gameVM.createCardTypeFrom(cardName: cardTypeString, index: deckIndex)!
 						playMemorize(cardType: card, level: level)
 					}
 				}
@@ -56,7 +57,7 @@ struct ShowCardOptionView: View {
 	//MARK: - Helper function
 	func playMemorize(cardType: CardType, level: GameLevel) {
 		audioPlayer.stopAudio()
-		deckVM.shuffleDeck(selectedType: cardType, difficultyLevel: level)
+		gameVM.shuffleDeck(selectedType: cardType, difficultyLevel: level)
 		startNewGame.toggle()
 	}
 }

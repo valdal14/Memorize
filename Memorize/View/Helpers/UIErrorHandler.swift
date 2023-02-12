@@ -10,6 +10,7 @@ import SwiftUI
 
 enum MemorizeError: String, Error {
 	case coreDataError = "Error: 101 - Something went wrong while performing IO operation"
+	case invalidPlayer = "Error: 102 - Cannot save the current game right now"
 }
 
 struct UIErrorHandler: ViewModifier {

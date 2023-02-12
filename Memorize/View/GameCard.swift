@@ -9,7 +9,8 @@ import SwiftUI
 
 struct GameCard: View {
 	@EnvironmentObject var audioPlayer: AudioService
-	@EnvironmentObject var deckVM: GameViewModel
+	@EnvironmentObject var gameVM: GameViewModel
+	@EnvironmentObject var onboardingVM: OnboardingViewModel
 	@State var cardName : String
 	@State var isFaceUp : Bool = false
 	@State var cardBackground = Color.accentColor
@@ -19,6 +20,7 @@ struct GameCard: View {
 	
 	@Binding var cardType: CardType
 	@Binding var level: GameLevel
+	@Binding var index: Int
 	
 	var body: some View {
 		ZStack {
@@ -58,7 +60,7 @@ struct GameCard: View {
 				isFaceUp.toggle()
 				degree = 0
 				
-				deckVM.addCard(card: self)
+				gameVM.addCard(card: self)
 				playGame()
 			}
 		}
@@ -66,8 +68,8 @@ struct GameCard: View {
 	
 	//MARK: - Helper
 	private func playGame() {
-		if deckVM.cards.count == 2 {
-			if deckVM.cards[0].cardName != deckVM.cards[1].cardName {
+		if gameVM.cards.count == 2 {
+			if gameVM.cards[0].cardName != gameVM.cards[1].cardName {
 				withAnimation(.linear(duration: 0.3)) {
 					degree -= 90
 				}
@@ -76,27 +78,27 @@ struct GameCard: View {
 				}
 				degree = 0
 				DispatchQueue.main.asyncAfter(deadline: .now() + 0.8, qos: .userInitiated) {
-					deckVM.cards[0].isFaceUp = false
-					deckVM.cards[1].isFaceUp = false
-					deckVM.cards.remove(at: 0)
-					deckVM.cards.remove(at: 0)
+					gameVM.cards[0].isFaceUp = false
+					gameVM.cards[1].isFaceUp = false
+					gameVM.cards.remove(at: 0)
+					gameVM.cards.remove(at: 0)
 				}
 			} else {
-				deckVM.guessedCard.append(deckVM.cards[0])
-				deckVM.guessedCard.append(deckVM.cards[1])
-				deckVM.cards.remove(at: 0)
-				deckVM.cards.remove(at: 0)
+				gameVM.guessedCard.append(gameVM.cards[0])
+				gameVM.guessedCard.append(gameVM.cards[1])
+				gameVM.cards.remove(at: 0)
+				gameVM.cards.remove(at: 0)
 				try? audioPlayer.playSound(fileName: "chimeup", fileExtension: "mp3")
 				
 				/// end game
-				if deckVM.guessedCard.count == (level.rawValue * 2) {
+				if gameVM.guessedCard.count == (level.rawValue * 2) {
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, qos: .userInitiated) {
 						try? self.audioPlayer.playSound(fileName: "success", fileExtension: "m4a")
-						deckVM.endGame()
+						gameVM.endGame()
 					}
 				}
 			}
-			deckVM.guessCounter += 1
+			gameVM.guessCounter += 1
 		}
 	}
 }
@@ -106,8 +108,9 @@ struct GameCard_Previews: PreviewProvider {
 	@State static var isFaceUp = true
 	@State static var cardType: CardType = CardType.emoji(.animal)
 	@State static var level: GameLevel = .easy
+	@State static var index: Int = 0
 	
     static var previews: some View {
-		GameCard(cardName: cardName, isFaceUp: isFaceUp, cardType: $cardType, level: $level)
+		GameCard(cardName: cardName, isFaceUp: isFaceUp, cardType: $cardType, level: $level, index: $index)
     }
 }

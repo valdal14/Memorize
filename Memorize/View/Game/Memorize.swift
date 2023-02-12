@@ -9,14 +9,15 @@ import SwiftUI
 
 struct Memorize: View {
 	@Environment(\.dismiss) var dismiss
-	@EnvironmentObject var gameVM: GameViewModel
 	@EnvironmentObject var audioPlayer: AudioService
+	@EnvironmentObject var gameVM: GameViewModel
+	@EnvironmentObject var onboardingVM: OnboardingViewModel
 	
 	@State private var columns : [GridItem] = [GridItem(.fixed(90), spacing: 3, alignment: .center),
 											   GridItem(.fixed(90), spacing: 3, alignment: .center),
 											   GridItem(.fixed(90), spacing: 3, alignment: .center),
 											   GridItem(.fixed(90), spacing: 3, alignment: .center)]
-	
+	@State private var showError = false
 	@Binding var cardType: CardType
 	@Binding var level: GameLevel
 	@Binding var player: Player?
@@ -24,7 +25,8 @@ struct Memorize: View {
 	var body: some View {
 		LazyVGrid(columns: columns, alignment: .center, spacing: 4, content: {
 			ForEach(0..<(level.rawValue * 2), id: \.self) { index in
-				GameCard(cardName: gameVM.inGameDeck[index], cardType: $cardType, level: $level)
+				GameCard(cardName: gameVM.inGameDeck[index], cardType: $cardType, level: $level, index: Binding<Int>(
+				get: { index }, set: { _ in }))
 			}
 		})
 		VStack {
@@ -59,12 +61,24 @@ struct Memorize: View {
 						.foregroundColor(Color.white)
 						.onTapGesture {
 							/// save the current game
-							
+							if let player = self.player {
+								do {
+									try gameVM.saveCurrentGame(player: player, cardType: cardType, level: level)
+									
+									if gameVM.wasGameSaved {
+										dismiss()
+									}
+								} catch {
+									showError.toggle()
+								}
+							} else {
+								showError.toggle()
+							}
 						}
 				}
 			}
 		}
-		
+		.presentErrorWith(state:$showError, message: MemorizeError.invalidPlayer.rawValue)
 		.padding()
 		.edgesIgnoringSafeArea(.all)
 	}

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct GameOptionView: View {
 	@Environment(\.dismiss) var dismiss
-	@EnvironmentObject var deckVM: GameViewModel
+	@EnvironmentObject var audioPlayer: AudioService
+	@EnvironmentObject var gameVM: GameViewModel
+	@EnvironmentObject var onboardingVM: OnboardingViewModel
 	
 	@State private var presentCardSelection = false
 	@State private var cardTypeString = ""

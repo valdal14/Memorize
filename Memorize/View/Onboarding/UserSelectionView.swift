@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserSelectionView: View {
 	@EnvironmentObject var audioPlayer: AudioService
+	@EnvironmentObject var gameVM: GameViewModel
 	@FocusState private var isFocused: Bool
 	@StateObject var onboardingVM = OnboardingViewModel()
 	@StateObject var wrapper = UserSelectionPropertyWrapper()
@@ -92,7 +93,7 @@ struct UserSelectionView: View {
 					} label: {
 						Text("Load games")
 					}
-					.disabled(wrapper.isSaveButtonDisable)
+					//.disabled(wrapper.isSaveButtonDisable)
 					.buttonStyle(.borderedProminent)
 					.cornerRadius(15)
 					.buttonStyle(.borderedProminent)
@@ -115,7 +116,10 @@ struct UserSelectionView: View {
 		.fullScreenCover(isPresented: $wrapper.presentGameOptionView, content: {
 			LevelOptionView(player: $wrapper.player)
 		})
-		.fullScreenCover(isPresented: $wrapper.presentSavedGamesView, content: SavedGameView.init)
+		.fullScreenCover(isPresented: $wrapper.presentSavedGamesView, content: {
+			SavedGameView(player: $wrapper.player)
+		})
+		.environmentObject(onboardingVM)
 	}
 	
 	//MARK: - Helper function

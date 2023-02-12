@@ -9,8 +9,9 @@ import SwiftUI
 
 struct DeckPickerView: View {
 	@Environment(\.dismiss) var dismiss
-	@EnvironmentObject var deckVM: GameViewModel
 	@EnvironmentObject var audioPlayer: AudioService
+	@EnvironmentObject var gameVM: GameViewModel
+	@EnvironmentObject var onboardingVM: OnboardingViewModel
 	@Binding var cardTypeString: String
 	@Binding var level: GameLevel
 	@State private var showError: Bool = false
@@ -52,7 +53,7 @@ struct DeckPickerView: View {
 			.padding(30)
 		}
 		.onAppear {
-			deckVM.presentDeckOption(cardType: cardTypeString)
+			gameVM.presentDeckOption(cardType: cardTypeString)
 		}
 		.edgesIgnoringSafeArea(.all)
 	}

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct LevelOptionView: View {
 	@Environment(\.dismiss) var dismiss
-	@StateObject var deckVM: GameViewModel = GameViewModel(deckGenerator: DeckGenerator())
+	@EnvironmentObject var audioPlayer: AudioService
+	@EnvironmentObject var gameVM: GameViewModel
+	@EnvironmentObject var onboardingVM: OnboardingViewModel
 	@State private var selectedDifficulty: GameLevel = .easy
 	@State private var presentLevelView: Bool = false
 	@Binding var player: Player?
@@ -35,7 +37,7 @@ struct LevelOptionView: View {
 					.foregroundColor(.accentColor)
 				/// Difficulty Level
 				HStack(spacing: 30) {
-					ForEach(deckVM.difficulties, id: \.self) { value in
+					ForEach(gameVM.difficulties, id: \.self) { value in
 						Circle()
 							.fill(Color.accentColor)
 							.frame(width: 70, height: 70)
@@ -81,7 +83,6 @@ struct LevelOptionView: View {
 			GameOptionView(level: $selectedDifficulty, player: $player)
 		})
 		.edgesIgnoringSafeArea(.all)
-		.environmentObject(deckVM)
 	}
 }
 

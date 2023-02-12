@@ -11,14 +11,14 @@ import Foundation
 class OnboardingViewModel: ObservableObject {
 	@Published var chosenPlayerName: String?
 	@Published var wasErrorRegistered: Bool = false
-	@Published var playerSavedgames: [Card] = []
+	@Published var playerSavedgames: [Game] = []
 	
 	func getLastUser() -> Player? {
 		let request = NSFetchRequest<Player>(entityName: "Player") as NSFetchRequest<Player>
 		let players = try? PersistenceController.shared.container.viewContext.fetch(request)
 		let player = players?.last
 		if let player {
-			let games = player.games?.allObjects as! [Card]
+			let games = player.games?.allObjects as! [Game]
 			playerSavedgames = games.reversed()
 			return player
 		} else {

@@ -10,7 +10,8 @@ import SwiftUI
 @main
 struct MemorizeApp: App {
     let persistenceController = PersistenceController.shared
-	let audioPlayer = AudioService()
+	@StateObject var audioPlayer = AudioService()
+	@StateObject var gameVM = GameViewModel(deckGenerator: DeckGenerator())
 	
     var body: some Scene {
         WindowGroup {
@@ -20,6 +21,7 @@ struct MemorizeApp: App {
 				}
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
 				.environmentObject(audioPlayer)
+				.environmentObject(gameVM)
         }
     }
 }
