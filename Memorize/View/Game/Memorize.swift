@@ -10,6 +10,7 @@ import SwiftUI
 struct Memorize: View {
 	@Environment(\.dismiss) var dismiss
 	@EnvironmentObject var gameVM: GameViewModel
+	@EnvironmentObject var audioPlayer: AudioService
 	
 	@State private var columns : [GridItem] = [GridItem(.fixed(90), spacing: 3, alignment: .center),
 											   GridItem(.fixed(90), spacing: 3, alignment: .center),
@@ -38,7 +39,11 @@ struct Memorize: View {
 					}
 					.buttonStyle(.borderedProminent)
 					Button("Main menu") {
-						// change game
+						// restart the game if we go back
+						gameVM.restartGame(selectedType: cardType, difficultyLevel: level)
+						// start the background track
+						try? audioPlayer.playBackgroundMusic(fileName: "soundtrack", fileExtension: "mp3")
+						// go back
 						dismiss()
 					}
 					.buttonStyle(.borderedProminent)
