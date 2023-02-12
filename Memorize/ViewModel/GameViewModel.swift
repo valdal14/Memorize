@@ -157,6 +157,12 @@ class GameViewModel: ObservableObject {
 			throw MemorizeError.coreDataError
 		}
 	}
+	
+	func fillInGameDeck(currentGameState: [Card]){
+		for card in currentGameState {
+			inGameDeck.append(card.cardName)
+		}
+	}
 }
 
 extension Array {

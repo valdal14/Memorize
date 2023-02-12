@@ -32,7 +32,7 @@ struct SavedGameView: View {
 										HStack {
 											Text("Emoji Game")
 												.foregroundColor(.accentColor)
-												.padding(.bottom, 4)
+												.padding(.bottom, 5)
 											Spacer()
 												.foregroundColor(.accentColor)
 											Text("🦊")
@@ -50,6 +50,7 @@ struct SavedGameView: View {
 											self.level = level
 											if let game = games.currentState {
 												currentGameState = game
+												gameVM.fillInGameDeck(currentGameState: currentGameState)
 												showGame = true
 											}
 										}
@@ -59,6 +60,7 @@ struct SavedGameView: View {
 										HStack {
 											Text("Emoji Game")
 												.foregroundColor(.accentColor)
+												.padding(.bottom, 5)
 											Spacer()
 												.foregroundColor(.accentColor)
 											Text("🎲")
@@ -76,6 +78,7 @@ struct SavedGameView: View {
 											self.level = level
 											if let game = games.currentState {
 												currentGameState = game
+												gameVM.fillInGameDeck(currentGameState: currentGameState)
 												showGame = true
 											}
 										}
@@ -85,6 +88,7 @@ struct SavedGameView: View {
 										HStack {
 											Text("Emoji Game")
 												.foregroundColor(.accentColor)
+												.padding(.bottom, 5)
 											Spacer()
 												.foregroundColor(.accentColor)
 											Text("✈️")
@@ -102,6 +106,7 @@ struct SavedGameView: View {
 											self.level = level
 											if let game = games.currentState {
 												currentGameState = game
+												gameVM.fillInGameDeck(currentGameState: currentGameState)
 												showGame = true
 											}
 										}
@@ -111,6 +116,7 @@ struct SavedGameView: View {
 										HStack {
 											Text("Symbol Game")
 												.foregroundColor(.accentColor)
+												.padding(.bottom, 5)
 											Spacer()
 											Image(systemName: "applewatch.watchface")
 												.foregroundColor(.accentColor)
@@ -128,6 +134,7 @@ struct SavedGameView: View {
 											self.level = level
 											if let game = games.currentState {
 												currentGameState = game
+												gameVM.fillInGameDeck(currentGameState: currentGameState)
 												showGame = true
 											}
 										}
@@ -137,6 +144,7 @@ struct SavedGameView: View {
 										HStack {
 											Text("Symbol Game")
 												.foregroundColor(.accentColor)
+												.padding(.bottom, 5)
 											Spacer()
 											Image(systemName: "xbox.logo")
 												.foregroundColor(.accentColor)
@@ -154,6 +162,7 @@ struct SavedGameView: View {
 											self.level = level
 											if let game = games.currentState {
 												currentGameState = game
+												gameVM.fillInGameDeck(currentGameState: currentGameState)
 												showGame = true
 											}
 										}
@@ -163,6 +172,7 @@ struct SavedGameView: View {
 										HStack {
 											Text("Symbol Game")
 												.foregroundColor(.accentColor)
+												.padding(.bottom, 5)
 											Spacer()
 											Image(systemName: "tree.fill")
 												.foregroundColor(.accentColor)
@@ -180,6 +190,7 @@ struct SavedGameView: View {
 											self.level = level
 											if let game = games.currentState {
 												currentGameState = game
+												gameVM.fillInGameDeck(currentGameState: currentGameState)
 												showGame = true
 											}
 										}
@@ -192,6 +203,7 @@ struct SavedGameView: View {
 												self.level = level
 												if let game = games.currentState {
 													currentGameState = game
+													gameVM.fillInGameDeck(currentGameState: currentGameState)
 													showGame = true
 												}
 											}
@@ -203,23 +215,21 @@ struct SavedGameView: View {
 						}
 					}
 				}
-				
-				ZStack {
-					Circle()
-						.fill(Color.red)
-						.frame(width: 70, height: 70)
-						.shadow(radius: 10)
-					Image(systemName: "xmark")
-						.font(.system(size: 25))
-						.foregroundColor(Color.white)
-						.onTapGesture {
-							dismiss()
-						}
-				}
 			}
-			.padding(30)
+			Spacer()
+			ZStack {
+				Circle()
+					.fill(Color.red)
+					.frame(width: 70, height: 70)
+					.shadow(radius: 10)
+				Image(systemName: "xmark")
+					.font(.system(size: 25))
+					.foregroundColor(Color.white)
+					.onTapGesture {
+						dismiss()
+					}
+			}
 		}
-		.background(Color("Background"))
 		.edgesIgnoringSafeArea(.all)
 		.fullScreenCover(isPresented: $showGame) {
 			Memorize(cardType: $cardType, level: $level, player: $player)
