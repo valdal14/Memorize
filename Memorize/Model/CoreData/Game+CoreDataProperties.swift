@@ -21,6 +21,7 @@ extension Game {
     @NSManaged public var level: Int64
     @NSManaged public var guessedCard: [Card]?
     @NSManaged public var cards: [Card]?
+    @NSManaged public var guesses: Int64
     @NSManaged public var user: Player?
 
 }

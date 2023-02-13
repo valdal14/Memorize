@@ -46,13 +46,13 @@ struct Memorize: View {
 					.font(.title)
 				HStack(spacing: 20) {
 					if wasNewGameComingFromALoadingGame {
-						Button("Go Back") {
+						Button("Main Menu") {
 							// restart the game if we go back
 							gameVM.restartGame(selectedType: cardType, difficultyLevel: level)
 							// start the background track
 							try? audioPlayer.playBackgroundMusic(fileName: "soundtrack", fileExtension: "mp3")
 							// go back
-							dismiss()
+							goBack = true
 						}
 						.buttonStyle(.borderedProminent)
 					} else {

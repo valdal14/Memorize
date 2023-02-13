@@ -5,6 +5,7 @@
         <attribute name="cardType" optional="YES" attributeType="String"/>
         <attribute name="currentState" optional="YES" attributeType="Transformable" customClassName="[Card]"/>
         <attribute name="guessedCard" optional="YES" attributeType="Transformable" customClassName="[Card]"/>
+        <attribute name="guesses" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="games" inverseEntity="Player"/>
     </entity>

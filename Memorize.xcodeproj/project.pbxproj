@@ -12,10 +12,10 @@
 		0100FEDC299014C20067F766 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100FEDB299014C20067F766 /* OnboardingViewModel.swift */; };
 		01103BAE2997E6B900B938D2 /* GameCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01103BAD2997E6B900B938D2 /* GameCard.swift */; };
 		0124B9D3299A0D07002B9D65 /* SavedGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0124B9D2299A0D07002B9D65 /* SavedGameViewModel.swift */; };
-		0124B9D8299A0EA4002B9D65 /* Game+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0124B9D4299A0EA4002B9D65 /* Game+CoreDataClass.swift */; };
-		0124B9D9299A0EA4002B9D65 /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0124B9D5299A0EA4002B9D65 /* Game+CoreDataProperties.swift */; };
-		0124B9DA299A0EA4002B9D65 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0124B9D6299A0EA4002B9D65 /* Player+CoreDataClass.swift */; };
-		0124B9DB299A0EA4002B9D65 /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0124B9D7299A0EA4002B9D65 /* Player+CoreDataProperties.swift */; };
+		0124B9E2299A631B002B9D65 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0124B9DE299A631B002B9D65 /* Player+CoreDataClass.swift */; };
+		0124B9E3299A631B002B9D65 /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0124B9DF299A631B002B9D65 /* Player+CoreDataProperties.swift */; };
+		0124B9E4299A631B002B9D65 /* Game+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0124B9E0299A631B002B9D65 /* Game+CoreDataClass.swift */; };
+		0124B9E5299A631B002B9D65 /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0124B9E1299A631B002B9D65 /* Game+CoreDataProperties.swift */; };
 		012BACDD298968EA00BD2C44 /* MemorizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BACDC298968EA00BD2C44 /* MemorizeApp.swift */; };
 		012BACE1298968EB00BD2C44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 012BACE0298968EB00BD2C44 /* Assets.xcassets */; };
 		012BACE4298968EB00BD2C44 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 012BACE3298968EB00BD2C44 /* Preview Assets.xcassets */; };
@@ -56,10 +56,10 @@
 		0100FEDB299014C20067F766 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		01103BAD2997E6B900B938D2 /* GameCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCard.swift; sourceTree = "<group>"; };
 		0124B9D2299A0D07002B9D65 /* SavedGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedGameViewModel.swift; sourceTree = "<group>"; };
-		0124B9D4299A0EA4002B9D65 /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataClass.swift"; sourceTree = "<group>"; };
-		0124B9D5299A0EA4002B9D65 /* Game+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		0124B9D6299A0EA4002B9D65 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
-		0124B9D7299A0EA4002B9D65 /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0124B9DE299A631B002B9D65 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0124B9DF299A631B002B9D65 /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0124B9E0299A631B002B9D65 /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0124B9E1299A631B002B9D65 /* Game+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		012BACD9298968EA00BD2C44 /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		012BACDC298968EA00BD2C44 /* MemorizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeApp.swift; sourceTree = "<group>"; };
 		012BACE0298968EB00BD2C44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -203,10 +203,10 @@
 		012BACF629896ADD00BD2C44 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				0124B9D4299A0EA4002B9D65 /* Game+CoreDataClass.swift */,
-				0124B9D5299A0EA4002B9D65 /* Game+CoreDataProperties.swift */,
-				0124B9D6299A0EA4002B9D65 /* Player+CoreDataClass.swift */,
-				0124B9D7299A0EA4002B9D65 /* Player+CoreDataProperties.swift */,
+				0124B9DE299A631B002B9D65 /* Player+CoreDataClass.swift */,
+				0124B9DF299A631B002B9D65 /* Player+CoreDataProperties.swift */,
+				0124B9E0299A631B002B9D65 /* Game+CoreDataClass.swift */,
+				0124B9E1299A631B002B9D65 /* Game+CoreDataProperties.swift */,
 				012BACE5298968EB00BD2C44 /* Persistence.swift */,
 				012BACE7298968EB00BD2C44 /* Memorize.xcdatamodeld */,
 			);
@@ -361,10 +361,9 @@
 				01DAF6F7298B9A4D002860F1 /* AudioService.swift in Sources */,
 				01DAF6F9298B9C3D002860F1 /* AudioViewModel.swift in Sources */,
 				012BACF829896B3700BD2C44 /* DeckBuilderModel.swift in Sources */,
-				0124B9D8299A0EA4002B9D65 /* Game+CoreDataClass.swift in Sources */,
+				0124B9E3299A631B002B9D65 /* Player+CoreDataProperties.swift in Sources */,
 				01B7614E2990E01C00DC964B /* SavedGameView.swift in Sources */,
 				0100FEDC299014C20067F766 /* OnboardingViewModel.swift in Sources */,
-				0124B9DA299A0EA4002B9D65 /* Player+CoreDataClass.swift in Sources */,
 				01B7614C2990DEEC00DC964B /* GameOptionView.swift in Sources */,
 				01B761502990EACF00DC964B /* DeckPickerView.swift in Sources */,
 				012BACE6298968EB00BD2C44 /* Persistence.swift in Sources */,
@@ -373,13 +372,14 @@
 				012BACE9298968EB00BD2C44 /* Memorize.xcdatamodeld in Sources */,
 				01103BAE2997E6B900B938D2 /* GameCard.swift in Sources */,
 				01DAF6EF298B983D002860F1 /* DeckGenerator.swift in Sources */,
+				0124B9E5299A631B002B9D65 /* Game+CoreDataProperties.swift in Sources */,
 				01510EAD29922DBB00AB8E9B /* Memorize.swift in Sources */,
+				0124B9E2299A631B002B9D65 /* Player+CoreDataClass.swift in Sources */,
 				0100FEC8299004FB0067F766 /* UserSelectionView.swift in Sources */,
+				0124B9E4299A631B002B9D65 /* Game+CoreDataClass.swift in Sources */,
 				01510EA429921B1500AB8E9B /* LevelOptionView.swift in Sources */,
 				01B46E6B299837C4001769EE /* ShowCardOptionView.swift in Sources */,
 				01DAF6F1298B986A002860F1 /* GameViewModel.swift in Sources */,
-				0124B9D9299A0EA4002B9D65 /* Game+CoreDataProperties.swift in Sources */,
-				0124B9DB299A0EA4002B9D65 /* Player+CoreDataProperties.swift in Sources */,
 				012BACDD298968EA00BD2C44 /* MemorizeApp.swift in Sources */,
 				01B7612A2990D0E300DC964B /* UserSelectionPropertyWrapper.swift in Sources */,
 				0100FECA299012130067F766 /* Card.swift in Sources */,

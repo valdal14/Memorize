@@ -169,6 +169,7 @@ class GameViewModel: ObservableObject {
 		
 		/// create a new game object
 		let newGame = Game(context: PersistenceController.shared.container.viewContext)
+		newGame.guesses = Int64(guessCounter)
 		newGame.currentState = originalCards
 		newGame.cards = uncheckedToBeSaved
 		newGame.guessedCard = guessedToBeSaved
@@ -186,7 +187,9 @@ class GameViewModel: ObservableObject {
 		}
 	}
 	
-	func fillInGameDeck(currentGameState: [Card], guessed: [Card], unChecked: [Card], carsdType: CardType, level: GameLevel){
+	func fillInGameDeck(currentGameState: [Card], guessed: [Card], unChecked: [Card], cardType: CardType, level: GameLevel, guesses: Int){
+		
+		guessCounter = guesses
 		
 		for card in currentGameState {
 			inGameDeck.append(card.cardName)
@@ -194,7 +197,7 @@ class GameViewModel: ObservableObject {
 		
 		for card in guessed {
 			let savedCard = GameCard(cardName: card.cardName,
-									 cardType: Binding<CardType>(get: { carsdType }, set: { _ in }),
+									 cardType: Binding<CardType>(get: { cardType }, set: { _ in }),
 									 level: Binding<GameLevel>(get: { level }, set: { _ in }),
 									 index: Binding<Int>(get: { card.id }, set: {_ in }))
 			
@@ -203,14 +206,14 @@ class GameViewModel: ObservableObject {
 		
 		for card in unChecked {
 			let savedCard = GameCard(cardName: card.cardName,
-									 cardType: Binding<CardType>(get: { carsdType }, set: { _ in }),
+									 cardType: Binding<CardType>(get: { cardType }, set: { _ in }),
 									 level: Binding<GameLevel>(get: { level }, set: { _ in }),
 									 index: Binding<Int>(get: { card.id }, set: {_ in }))
 			
 			cards.append(savedCard)
 		}
 		
-		restoreGame(currentGameState: currentGameState, carsdType: carsdType, level: level)
+		restoreGame(currentGameState: currentGameState, carsdType: cardType, level: level)
 		
 		/// used to switch the state
 		for card in currentGameState {

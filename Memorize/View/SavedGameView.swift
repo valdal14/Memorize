@@ -19,6 +19,7 @@ struct SavedGameView: View {
 	@State private var currentGameState: [Card] = []
 	@State private var showGame = false
 	@State private var savedGame = true
+	@State private var numberOfGuesses: Int = 0
 	
 	var body: some View {
 		ZStack {
@@ -47,7 +48,9 @@ struct SavedGameView: View {
 									}
 									.onTapGesture {
 										cardType = .emoji(.animal)
-										prepareSavedGameToPlay(games: games, carsdType: cardType, level: level)
+										prepareSavedGameToPlay(game: games.currentState ?? [],
+															   cardType: cardType,
+															   guesses: Int(games.guesses))
 									}
 								case "Memorize.EmojiOption.sport":
 									Section {
@@ -68,7 +71,9 @@ struct SavedGameView: View {
 									}
 									.onTapGesture {
 										cardType = .emoji(.sport)
-										prepareSavedGameToPlay(games: games, carsdType: cardType, level: level)
+										prepareSavedGameToPlay(game: games.currentState ?? [],
+															   cardType: cardType,
+															   guesses: Int(games.guesses))
 									}
 								case "Memorize.EmojiOption.travel":
 									Section {
@@ -89,7 +94,9 @@ struct SavedGameView: View {
 									}
 									.onTapGesture {
 										cardType = .emoji(.travel)
-										prepareSavedGameToPlay(games: games, carsdType: cardType, level: level)
+										prepareSavedGameToPlay(game: games.currentState ?? [],
+															   cardType: cardType,
+															   guesses: Int(games.guesses))
 									}
 								case "Memorize.SymbolOption.device":
 									Section {
@@ -110,7 +117,9 @@ struct SavedGameView: View {
 									}
 									.onTapGesture {
 										cardType = .symbol(.device)
-										prepareSavedGameToPlay(games: games, carsdType: cardType, level: level)
+										prepareSavedGameToPlay(game: games.currentState ?? [],
+															   cardType: cardType,
+															   guesses: Int(games.guesses))
 									}
 								case "Memorize.SymbolOption.gaming":
 									Section {
@@ -131,7 +140,9 @@ struct SavedGameView: View {
 									}
 									.onTapGesture {
 										cardType = .symbol(.gaming)
-										prepareSavedGameToPlay(games: games, carsdType: cardType, level: level)
+										prepareSavedGameToPlay(game: games.currentState ?? [],
+															   cardType: cardType,
+															   guesses: Int(games.guesses))
 									}
 								case "Memorize.SymbolOption.nature":
 									Section {
@@ -152,13 +163,17 @@ struct SavedGameView: View {
 									}
 									.onTapGesture {
 										cardType = .symbol(.nature)
-										prepareSavedGameToPlay(games: games, carsdType: cardType, level: level)
+										prepareSavedGameToPlay(game: games.currentState ?? [],
+															   cardType: cardType,
+															   guesses: Int(games.guesses))
 									}
 								case "Memorize.PictureOption.image":
 									Text("toDO")
 										.onTapGesture {
 											cardType = .picture(.image)
-											prepareSavedGameToPlay(games: games, carsdType: cardType, level: level)
+											prepareSavedGameToPlay(game: games.currentState ?? [],
+																   cardType: cardType,
+																   guesses: Int(games.guesses))
 										}
 								default:
 									Text("OPPS!!!")
@@ -194,19 +209,22 @@ struct SavedGameView: View {
 	}
 	
 	//MARK: - Helper function
-	func prepareSavedGameToPlay(games: Game, carsdType: CardType, level: GameLevel) {
-		if let level = GameLevel(rawValue: Int(games.level)) {
+	func prepareSavedGameToPlay(game: [Card]?, cardType: CardType, guesses: Int) {
+		if let currentGame = game {
+			let (gameOne, guessedOne, uncheckedOne, selectedLevel) = savedGamesVM.getCardFromCurrentSelectedSavedGame(currentGame: currentGame)
+			/// pass the level we retrieved
+			self.level = GameLevel(rawValue: Int(selectedLevel)) ?? .easy
 			
-			self.level = level
-			gameVM.fillInGameDeck(currentGameState: savedGamesVM.inGameCard,
-								  guessed: savedGamesVM.savedGuessedCard,
-								  unChecked: savedGamesVM.uncheckedSavedinGameCard,
-								  carsdType: carsdType,
-								  level: level)
+			gameVM.fillInGameDeck(currentGameState: gameOne,
+								  guessed: guessedOne,
+								  unChecked: uncheckedOne,
+								  cardType: cardType,
+								  level: self.level,
+								  guesses: Int(guesses))
 			showGame = true
 		}
 	}
-
+	
 }
 
 struct SavedGameView_Previews: PreviewProvider {
