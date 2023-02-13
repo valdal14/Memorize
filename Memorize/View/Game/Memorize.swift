@@ -75,10 +75,10 @@ struct Memorize: View {
 			} else {
 				ZStack {
 					Circle()
-						.fill(wasNewGameComingFromALoadingGame ? Color.red : Color.accentColor)
+						.fill(wasNewGameComingFromALoadingGame || gameVM.cards.count != 0 ? Color.red : Color.accentColor)
 						.frame(width: 70, height: 70)
 						.shadow(radius: 10)
-						.opacity(wasNewGameComingFromALoadingGame ? 0.5 : 1.0)
+						.opacity(wasNewGameComingFromALoadingGame || gameVM.cards.count != 0 ? 0.5 : 1.0)
 					Image(systemName: "bookmark.fill")
 						.font(.system(size: 25))
 						.foregroundColor(Color.white)
@@ -99,7 +99,7 @@ struct Memorize: View {
 								showError.toggle()
 							}
 						}
-						.disabled(wasNewGameComingFromALoadingGame)
+						.disabled(wasNewGameComingFromALoadingGame || gameVM.cards.count != 0)
 				}
 			}
 		}
