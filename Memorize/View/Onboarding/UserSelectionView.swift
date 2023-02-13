@@ -27,7 +27,8 @@ struct UserSelectionView: View {
 				if let player = wrapper.player?.username, let wasLoaded = !player.isEmpty {
 					if wasLoaded {
 						Text("Welcome \(player)")
-							.font(.headline)
+							.font(.largeTitle)
+							.fontWeight(.thin)
 							.foregroundColor(.accentColor)
 					}
 				} else {
@@ -80,25 +81,27 @@ struct UserSelectionView: View {
 				Button {
 					wrapper.presentGameOptionView.toggle()
 				} label: {
-					Text("Start New Game")
+					Text(" New Game ")
 				}
 				.disabled( wrapper.isNewGameDisabled)
 				.cornerRadius(15)
 				.buttonStyle(.borderedProminent)
 				.tint(.accentColor)
+				.controlSize(.large)
 				/// Check if current player has saved games
 				if !onboardingVM.playerSavedgames.isEmpty {
 					Button {
 						/// show saved games
 						wrapper.presentSavedGamesView.toggle()
 					} label: {
-						Text("Load games")
+						Text("Load Games")
 					}
 					//.disabled(wrapper.isSaveButtonDisable)
 					.buttonStyle(.borderedProminent)
 					.cornerRadius(15)
 					.buttonStyle(.borderedProminent)
 					.tint(.accentColor)
+					.controlSize(.large)
 					.padding()
 
 				}
