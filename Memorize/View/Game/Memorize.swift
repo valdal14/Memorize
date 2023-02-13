@@ -21,6 +21,7 @@ struct Memorize: View {
 	@Binding var cardType: CardType
 	@Binding var level: GameLevel
 	@Binding var player: Player?
+	@State private var goBack: Bool = false
 	
 	var body: some View {
 		LazyVGrid(columns: columns, alignment: .center, spacing: 4, content: {
@@ -74,8 +75,8 @@ struct Memorize: View {
 									try gameVM.saveCurrentGame(player: player, cardType: cardType, level: level)
 									
 									if gameVM.wasGameSaved {
-										gameVM.wasGameSaved = false
-										dismiss()
+										goBack = true
+										try? audioPlayer.playBackgroundMusic(fileName: "soundtrack", fileExtension: "mp3")
 									}
 								} catch {
 									showError.toggle()
@@ -87,6 +88,9 @@ struct Memorize: View {
 				}
 			}
 		}
+		.fullScreenCover(isPresented: $goBack, content: {
+			UserSelectionView(resetStateAfterSave: $goBack)
+		})
 		.presentErrorWith(state:$showError, message: MemorizeError.invalidPlayer.rawValue)
 		.padding()
 		.edgesIgnoringSafeArea(.all)

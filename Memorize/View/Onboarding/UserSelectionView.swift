@@ -9,10 +9,11 @@ import SwiftUI
 
 struct UserSelectionView: View {
 	@EnvironmentObject var audioPlayer: AudioService
-	@EnvironmentObject var gameVM: GameViewModel
+	@StateObject var gameVM = GameViewModel(deckGenerator: DeckGenerator())
 	@FocusState private var isFocused: Bool
 	@StateObject var onboardingVM = OnboardingViewModel()
 	@StateObject var wrapper = UserSelectionPropertyWrapper()
+	@Binding var resetStateAfterSave: Bool
 	
 	var body: some View {
 		ZStack {
@@ -120,6 +121,10 @@ struct UserSelectionView: View {
 			SavedGameView(player: $wrapper.player)
 		})
 		.environmentObject(onboardingVM)
+		.environmentObject(gameVM)
+		.onChange(of: resetStateAfterSave) { _ in
+			gameVM.resetAfterSave()
+		}
 	}
 	
 	//MARK: - Helper function
@@ -142,7 +147,8 @@ struct UserSelectionView: View {
 }
 
 struct UserSelectionView_Previews: PreviewProvider {
+	@State static var reset: Bool = false
 	static var previews: some View {
-		UserSelectionView()
+		UserSelectionView(resetStateAfterSave: $reset)
 	}
 }

@@ -118,6 +118,21 @@ class GameViewModel: ObservableObject {
 		self.isGameEnded.toggle()
 	}
 	
+	func resetAfterSave() {
+		difficulties = []
+		deckOptions = []
+		inGameDeck = []
+		cards = []
+		guessCounter = 0
+		isGameEnded = false
+		guessedCard = []
+		originalCards = []
+		wasGameSaved = false
+		wasGameLoaded = false
+		newGameFromLoadingState = []
+		setIsFaceUPFromSavedCard = []
+	}
+	
 	func saveCurrentGame(player: Player, cardType: CardType, level: GameLevel) throws {
 		var uncheckedToBeSaved: [Card] = []
 		var guessedToBeSaved: [Card] = []
