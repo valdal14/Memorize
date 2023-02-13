@@ -2,7 +2,7 @@
 //  Game+CoreDataProperties.swift
 //  Memorize
 //
-//  Created by Valerio D'ALESSIO on 12/2/23.
+//  Created by Valerio D'ALESSIO on 13/2/23.
 //
 //
 
@@ -16,9 +16,11 @@ extension Game {
         return NSFetchRequest<Game>(entityName: "Game")
     }
 
+    @NSManaged public var cardType: String?
     @NSManaged public var currentState: [Card]?
     @NSManaged public var level: Int64
-    @NSManaged public var cardType: String?
+    @NSManaged public var guessedCard: [Card]?
+    @NSManaged public var cards: [Card]?
     @NSManaged public var user: Player?
 
 }

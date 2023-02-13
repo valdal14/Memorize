@@ -12,6 +12,7 @@ struct SavedGameView: View {
 	@EnvironmentObject var onboardingVM: OnboardingViewModel
 	@EnvironmentObject var audioPlayer: AudioService
 	@EnvironmentObject var gameVM: GameViewModel
+	@StateObject var savedGamesVM = SavedGameViewModel()
 	@Binding var player: Player?
 	@State private var cardType: CardType = .emoji(.animal)
 	@State private var level: GameLevel = .easy
@@ -46,14 +47,7 @@ struct SavedGameView: View {
 									}
 									.onTapGesture {
 										cardType = .emoji(.animal)
-										if let level = GameLevel(rawValue: Int(games.level)) {
-											self.level = level
-											if let game = games.currentState {
-												currentGameState = game
-												gameVM.fillInGameDeck(currentGameState: currentGameState)
-												showGame = true
-											}
-										}
+										prepareSavedGameToPlay(games: games, carsdType: cardType, level: level)
 									}
 								case "Memorize.EmojiOption.sport":
 									Section {
@@ -74,14 +68,7 @@ struct SavedGameView: View {
 									}
 									.onTapGesture {
 										cardType = .emoji(.sport)
-										if let level = GameLevel(rawValue: Int(games.level)) {
-											self.level = level
-											if let game = games.currentState {
-												currentGameState = game
-												gameVM.fillInGameDeck(currentGameState: currentGameState)
-												showGame = true
-											}
-										}
+										prepareSavedGameToPlay(games: games, carsdType: cardType, level: level)
 									}
 								case "Memorize.EmojiOption.travel":
 									Section {
@@ -102,14 +89,7 @@ struct SavedGameView: View {
 									}
 									.onTapGesture {
 										cardType = .emoji(.travel)
-										if let level = GameLevel(rawValue: Int(games.level)) {
-											self.level = level
-											if let game = games.currentState {
-												currentGameState = game
-												gameVM.fillInGameDeck(currentGameState: currentGameState)
-												showGame = true
-											}
-										}
+										prepareSavedGameToPlay(games: games, carsdType: cardType, level: level)
 									}
 								case "Memorize.SymbolOption.device":
 									Section {
@@ -130,14 +110,7 @@ struct SavedGameView: View {
 									}
 									.onTapGesture {
 										cardType = .symbol(.device)
-										if let level = GameLevel(rawValue: Int(games.level)) {
-											self.level = level
-											if let game = games.currentState {
-												currentGameState = game
-												gameVM.fillInGameDeck(currentGameState: currentGameState)
-												showGame = true
-											}
-										}
+										prepareSavedGameToPlay(games: games, carsdType: cardType, level: level)
 									}
 								case "Memorize.SymbolOption.gaming":
 									Section {
@@ -158,14 +131,7 @@ struct SavedGameView: View {
 									}
 									.onTapGesture {
 										cardType = .symbol(.gaming)
-										if let level = GameLevel(rawValue: Int(games.level)) {
-											self.level = level
-											if let game = games.currentState {
-												currentGameState = game
-												gameVM.fillInGameDeck(currentGameState: currentGameState)
-												showGame = true
-											}
-										}
+										prepareSavedGameToPlay(games: games, carsdType: cardType, level: level)
 									}
 								case "Memorize.SymbolOption.nature":
 									Section {
@@ -186,27 +152,13 @@ struct SavedGameView: View {
 									}
 									.onTapGesture {
 										cardType = .symbol(.nature)
-										if let level = GameLevel(rawValue: Int(games.level)) {
-											self.level = level
-											if let game = games.currentState {
-												currentGameState = game
-												gameVM.fillInGameDeck(currentGameState: currentGameState)
-												showGame = true
-											}
-										}
+										prepareSavedGameToPlay(games: games, carsdType: cardType, level: level)
 									}
 								case "Memorize.PictureOption.image":
 									Text("toDO")
 										.onTapGesture {
 											cardType = .picture(.image)
-											if let level = GameLevel(rawValue: Int(games.level)) {
-												self.level = level
-												if let game = games.currentState {
-													currentGameState = game
-													gameVM.fillInGameDeck(currentGameState: currentGameState)
-													showGame = true
-												}
-											}
+											prepareSavedGameToPlay(games: games, carsdType: cardType, level: level)
 										}
 								default:
 									Text("OPPS!!!")
@@ -230,11 +182,29 @@ struct SavedGameView: View {
 					}
 			}
 		}
+		.onAppear {
+			savedGamesVM.retrivePlayerGame(playerSavedGames: onboardingVM.playerSavedgames)
+		}
 		.edgesIgnoringSafeArea(.all)
 		.fullScreenCover(isPresented: $showGame) {
 			Memorize(cardType: $cardType, level: $level, player: $player)
 		}
 	}
+	
+	//MARK: - Helper function
+	func prepareSavedGameToPlay(games: Game, carsdType: CardType, level: GameLevel) {
+		if let level = GameLevel(rawValue: Int(games.level)) {
+			
+			self.level = level
+			gameVM.fillInGameDeck(currentGameState: savedGamesVM.inGameCard,
+								  guessed: savedGamesVM.savedGuessedCard,
+								  unChecked: savedGamesVM.uncheckedSavedinGameCard,
+								  carsdType: carsdType,
+								  level: level)
+			showGame = true
+		}
+	}
+
 }
 
 struct SavedGameView_Previews: PreviewProvider {

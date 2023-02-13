@@ -24,9 +24,17 @@ struct Memorize: View {
 	
 	var body: some View {
 		LazyVGrid(columns: columns, alignment: .center, spacing: 4, content: {
-			ForEach(0..<(level.rawValue * 2), id: \.self) { index in
-				GameCard(cardName: gameVM.inGameDeck[index], cardType: $cardType, level: $level, index: Binding<Int>(
-				get: { index }, set: { _ in }))
+			if gameVM.wasGameLoaded {
+				ForEach(gameVM.newGameFromLoadingState, id: \.index){ gameCard in
+					gameCard
+				}
+			} else {
+				ForEach(0..<(level.rawValue * 2), id: \.self) { index in
+					GameCard(cardName: gameVM.inGameDeck[index],
+							 cardType: $cardType,
+							 level: $level,
+							 index: Binding<Int>(get: { index }, set: { _ in }))
+				}
 			}
 		})
 		VStack {
@@ -66,6 +74,7 @@ struct Memorize: View {
 									try gameVM.saveCurrentGame(player: player, cardType: cardType, level: level)
 									
 									if gameVM.wasGameSaved {
+										gameVM.wasGameSaved = false
 										dismiss()
 									}
 								} catch {

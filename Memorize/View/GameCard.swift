@@ -17,7 +17,7 @@ struct GameCard: View {
 	@State var degree : Double = 0
 	var cardW : CGFloat = 90.0
 	var cardH : CGFloat = 110
-	
+	@State private var counter: Int = 0
 	@Binding var cardType: CardType
 	@Binding var level: GameLevel
 	@Binding var index: Int
@@ -62,6 +62,12 @@ struct GameCard: View {
 				
 				gameVM.addCard(card: self)
 				playGame()
+			}
+		}
+		.onAppear {
+			if gameVM.wasGameLoaded {
+				self.isFaceUp = .init(gameVM.setIsFaceUPFromSavedCard[index].isFaceUP)
+				self.counter += 1
 			}
 		}
     }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class GameViewModel: ObservableObject {
 	
@@ -21,6 +22,9 @@ class GameViewModel: ObservableObject {
 	@Published var guessedCard : [GameCard] = []
 	@Published var originalCards: [Card] = []
 	@Published var wasGameSaved: Bool = false
+	@Published var wasGameLoaded: Bool = false
+	@Published var newGameFromLoadingState: [GameCard] = []
+	@Published var setIsFaceUPFromSavedCard: [Card] = []
 	
 	init(deckGenerator: DeckGeneratorService) {
 		self.deckGenerator = deckGenerator
@@ -29,9 +33,11 @@ class GameViewModel: ObservableObject {
 	
 	func shuffleDeck(selectedType: CardType, difficultyLevel: GameLevel) {
 		inGameDeck = deckGenerator.shuffleDeckGenerator(selectedType: selectedType, difficultyLevel: difficultyLevel)
-		for card in inGameDeck {
-			originalCards.append(Card(isFaceUP: false, cardName: card))
+		for (index, card) in inGameDeck.enumerated() {
+			originalCards.append(Card(id: index, isFaceUP: false, cardName: card))
 		}
+		
+		wasGameLoaded = false
 	}
 	
 	func presentDifficultyLevel() {
@@ -113,12 +119,17 @@ class GameViewModel: ObservableObject {
 	}
 	
 	func saveCurrentGame(player: Player, cardType: CardType, level: GameLevel) throws {
+		var uncheckedToBeSaved: [Card] = []
+		var guessedToBeSaved: [Card] = []
+		
 		for card in cards {
-			originalCards[card.index] = Card(isFaceUP: card.isFaceUp, cardName: card.cardName)
+			originalCards[card.index] = Card(id: card.index, isFaceUP: card.isFaceUp, cardName: card.cardName)
+			uncheckedToBeSaved.append(Card(id: card.index, isFaceUP: card.isFaceUp, cardName: card.cardName))
 		}
 		
 		for card in guessedCard {
-			originalCards[card.index] = Card(isFaceUP: card.isFaceUp, cardName: card.cardName)
+			originalCards[card.index] = Card(id: card.index, isFaceUP: card.isFaceUp, cardName: card.cardName)
+			guessedToBeSaved.append(Card(id: card.index, isFaceUP: card.isFaceUp, cardName: card.cardName))
 		}
 		
 		let level = level.rawValue
@@ -144,6 +155,8 @@ class GameViewModel: ObservableObject {
 		/// create a new game object
 		let newGame = Game(context: PersistenceController.shared.container.viewContext)
 		newGame.currentState = originalCards
+		newGame.cards = uncheckedToBeSaved
+		newGame.guessedCard = guessedToBeSaved
 		newGame.level = Int64(level)
 		if let cardStringType = cardStringType {
 			newGame.cardType = cardStringType
@@ -158,10 +171,53 @@ class GameViewModel: ObservableObject {
 		}
 	}
 	
-	func fillInGameDeck(currentGameState: [Card]){
+	func fillInGameDeck(currentGameState: [Card], guessed: [Card], unChecked: [Card], carsdType: CardType, level: GameLevel){
+		
 		for card in currentGameState {
 			inGameDeck.append(card.cardName)
 		}
+		
+		for card in guessed {
+			let savedCard = GameCard(cardName: card.cardName,
+									 cardType: Binding<CardType>(get: { carsdType }, set: { _ in }),
+									 level: Binding<GameLevel>(get: { level }, set: { _ in }),
+									 index: Binding<Int>(get: { card.id }, set: {_ in }))
+			
+			guessedCard.append(savedCard)
+		}
+		
+		for card in unChecked {
+			let savedCard = GameCard(cardName: card.cardName,
+									 cardType: Binding<CardType>(get: { carsdType }, set: { _ in }),
+									 level: Binding<GameLevel>(get: { level }, set: { _ in }),
+									 index: Binding<Int>(get: { card.id }, set: {_ in }))
+			
+			cards.append(savedCard)
+		}
+		
+		restoreGame(currentGameState: currentGameState, carsdType: carsdType, level: level)
+		
+		/// used to switch the state
+		for card in currentGameState {
+			setIsFaceUPFromSavedCard.append(card)
+		}
+		
+		wasGameLoaded = true
+	}
+	
+	private func restoreGame(currentGameState: [Card], carsdType: CardType, level: GameLevel) {
+		for card in currentGameState {
+			let savedCard = GameCard(cardName: card.cardName,
+									 cardType: Binding<CardType>(get: { carsdType }, set: { _ in }),
+									 level: Binding<GameLevel>(get: { level }, set: { _ in }),
+									 index: Binding<Int>(get: { card.id }, set: {_ in }))
+			
+			newGameFromLoadingState.append(savedCard)
+		}
+	}
+
+	func setGameCardIsFaceUp(currentGameState: [Card], index: Int, isFaceUp: Binding<Bool>){
+		return isFaceUp.wrappedValue = currentGameState[index].isFaceUP
 	}
 }
 
