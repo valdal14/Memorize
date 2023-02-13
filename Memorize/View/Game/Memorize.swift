@@ -22,6 +22,7 @@ struct Memorize: View {
 	@Binding var level: GameLevel
 	@Binding var player: Player?
 	@State private var goBack: Bool = false
+	@Binding var wasNewGameComingFromALoadingGame: Bool
 	
 	var body: some View {
 		LazyVGrid(columns: columns, alignment: .center, spacing: 4, content: {
@@ -44,27 +45,40 @@ struct Memorize: View {
 					.fontWidth(.compressed)
 					.font(.title)
 				HStack(spacing: 20) {
-					Button("Play again") {
-						// restart the game
-						gameVM.restartGame(selectedType: cardType, difficultyLevel: level)
+					if wasNewGameComingFromALoadingGame {
+						Button("Go Back") {
+							// restart the game if we go back
+							gameVM.restartGame(selectedType: cardType, difficultyLevel: level)
+							// start the background track
+							try? audioPlayer.playBackgroundMusic(fileName: "soundtrack", fileExtension: "mp3")
+							// go back
+							dismiss()
+						}
+						.buttonStyle(.borderedProminent)
+					} else {
+						Button("Play again") {
+							// restart the game
+							gameVM.restartGame(selectedType: cardType, difficultyLevel: level)
+						}
+						.buttonStyle(.borderedProminent)
+						Button("Main menu") {
+							// restart the game if we go back
+							gameVM.restartGame(selectedType: cardType, difficultyLevel: level)
+							// start the background track
+							try? audioPlayer.playBackgroundMusic(fileName: "soundtrack", fileExtension: "mp3")
+							// go back
+							goBack = true
+						}
+						.buttonStyle(.borderedProminent)
 					}
-					.buttonStyle(.borderedProminent)
-					Button("Main menu") {
-						// restart the game if we go back
-						gameVM.restartGame(selectedType: cardType, difficultyLevel: level)
-						// start the background track
-						try? audioPlayer.playBackgroundMusic(fileName: "soundtrack", fileExtension: "mp3")
-						// go back
-						dismiss()
-					}
-					.buttonStyle(.borderedProminent)
 				}
 			} else {
 				ZStack {
 					Circle()
-						.fill(Color.accentColor)
+						.fill(wasNewGameComingFromALoadingGame ? Color.red : Color.accentColor)
 						.frame(width: 70, height: 70)
 						.shadow(radius: 10)
+						.opacity(wasNewGameComingFromALoadingGame ? 0.5 : 1.0)
 					Image(systemName: "bookmark.fill")
 						.font(.system(size: 25))
 						.foregroundColor(Color.white)
@@ -85,6 +99,7 @@ struct Memorize: View {
 								showError.toggle()
 							}
 						}
+						.disabled(wasNewGameComingFromALoadingGame)
 				}
 			}
 		}
@@ -101,7 +116,8 @@ struct Momorize_Previews: PreviewProvider {
 	@State static var cardType: CardType = CardType.emoji(.animal)
 	@State static var level: GameLevel = .easy
 	@State static var player: Player?
+	@State static var newGameFromSave: Bool = false
 	static var previews: some View {
-		Memorize(cardType: $cardType, level: $level, player: $player)
+		Memorize(cardType: $cardType, level: $level, player: $player, wasNewGameComingFromALoadingGame: $newGameFromSave)
 	}
 }

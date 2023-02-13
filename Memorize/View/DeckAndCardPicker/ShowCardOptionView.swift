@@ -49,7 +49,7 @@ struct ShowCardOptionView: View {
 				}
 				/// present new screens
 				.fullScreenCover(isPresented: $startNewGame, content: {
-					Memorize(cardType: $card, level: $level, player: $player)
+					Memorize(cardType: $card, level: $level, player: $player, wasNewGameComingFromALoadingGame: Binding(get: { false }, set: {_ in }))
 				})
 		}
 	}

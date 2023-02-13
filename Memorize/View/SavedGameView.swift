@@ -18,7 +18,7 @@ struct SavedGameView: View {
 	@State private var level: GameLevel = .easy
 	@State private var currentGameState: [Card] = []
 	@State private var showGame = false
-	
+	@State private var savedGame = true
 	
 	var body: some View {
 		ZStack {
@@ -167,19 +167,21 @@ struct SavedGameView: View {
 						}
 					}
 				}
-			}
-			Spacer()
-			ZStack {
-				Circle()
-					.fill(Color.red)
-					.frame(width: 70, height: 70)
-					.shadow(radius: 10)
-				Image(systemName: "xmark")
-					.font(.system(size: 25))
-					.foregroundColor(Color.white)
-					.onTapGesture {
-						dismiss()
-					}
+				
+				Spacer()
+				ZStack {
+					Circle()
+						.fill(Color.red)
+						.frame(width: 70, height: 70)
+						.shadow(radius: 10)
+					Image(systemName: "xmark")
+						.font(.system(size: 25))
+						.foregroundColor(Color.white)
+						.onTapGesture {
+							dismiss()
+						}
+				}
+				.padding(30)
 			}
 		}
 		.onAppear {
@@ -187,7 +189,7 @@ struct SavedGameView: View {
 		}
 		.edgesIgnoringSafeArea(.all)
 		.fullScreenCover(isPresented: $showGame) {
-			Memorize(cardType: $cardType, level: $level, player: $player)
+			Memorize(cardType: $cardType, level: $level, player: $player, wasNewGameComingFromALoadingGame: $savedGame)
 		}
 	}
 	
