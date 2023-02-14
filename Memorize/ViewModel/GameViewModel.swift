@@ -249,7 +249,7 @@ class GameViewModel: ObservableObject {
 	}
 	
 	func shuffleImageDeck(){
-		dowloadedCard.shuffled()
+		dowloadedCard = dowloadedCard.shuffled()
 	}
 }
 
