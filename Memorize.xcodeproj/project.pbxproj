@@ -10,6 +10,8 @@
 		0100FEC8299004FB0067F766 /* UserSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100FEC7299004FB0067F766 /* UserSelectionView.swift */; };
 		0100FECA299012130067F766 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100FEC9299012130067F766 /* Card.swift */; };
 		0100FEDC299014C20067F766 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100FEDB299014C20067F766 /* OnboardingViewModel.swift */; };
+		01095B2E299BC34C0012ED41 /* GameCreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01095B2D299BC34C0012ED41 /* GameCreditsView.swift */; };
+		01095B30299BC5400012ED41 /* DismissView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01095B2F299BC5400012ED41 /* DismissView.swift */; };
 		01103BAE2997E6B900B938D2 /* GameCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01103BAD2997E6B900B938D2 /* GameCard.swift */; };
 		0124B9D3299A0D07002B9D65 /* SavedGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0124B9D2299A0D07002B9D65 /* SavedGameViewModel.swift */; };
 		0124B9E2299A631B002B9D65 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0124B9DE299A631B002B9D65 /* Player+CoreDataClass.swift */; };
@@ -61,6 +63,8 @@
 		0100FEC7299004FB0067F766 /* UserSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSelectionView.swift; sourceTree = "<group>"; };
 		0100FEC9299012130067F766 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		0100FEDB299014C20067F766 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		01095B2D299BC34C0012ED41 /* GameCreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCreditsView.swift; sourceTree = "<group>"; };
+		01095B2F299BC5400012ED41 /* DismissView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissView.swift; sourceTree = "<group>"; };
 		01103BAD2997E6B900B938D2 /* GameCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCard.swift; sourceTree = "<group>"; };
 		0124B9D2299A0D07002B9D65 /* SavedGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedGameViewModel.swift; sourceTree = "<group>"; };
 		0124B9DE299A631B002B9D65 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 			children = (
 				0100FEC7299004FB0067F766 /* UserSelectionView.swift */,
 				01B761292990D0E300DC964B /* UserSelectionPropertyWrapper.swift */,
+				01095B2D299BC34C0012ED41 /* GameCreditsView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				01B761272990CC2B00DC964B /* UIErrorHandler.swift */,
+				01095B2F299BC5400012ED41 /* DismissView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -390,11 +396,13 @@
 				01DAF6F7298B9A4D002860F1 /* AudioService.swift in Sources */,
 				01DAF6F9298B9C3D002860F1 /* AudioViewModel.swift in Sources */,
 				01CB8DAD299B5ED700F7A72D /* CardAPI.swift in Sources */,
+				01095B30299BC5400012ED41 /* DismissView.swift in Sources */,
 				012BACF829896B3700BD2C44 /* DeckBuilderModel.swift in Sources */,
 				0124B9E3299A631B002B9D65 /* Player+CoreDataProperties.swift in Sources */,
 				01B7614E2990E01C00DC964B /* SavedGameView.swift in Sources */,
 				0100FEDC299014C20067F766 /* OnboardingViewModel.swift in Sources */,
 				01B7614C2990DEEC00DC964B /* GameOptionView.swift in Sources */,
+				01095B2E299BC34C0012ED41 /* GameCreditsView.swift in Sources */,
 				01B761502990EACF00DC964B /* DeckPickerView.swift in Sources */,
 				012BACE6298968EB00BD2C44 /* Persistence.swift in Sources */,
 				01B761282990CC2B00DC964B /* UIErrorHandler.swift in Sources */,

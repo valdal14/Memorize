@@ -63,18 +63,8 @@ struct LevelOptionView: View {
 					}
 				}
 				Spacer()
-				ZStack {
-					Circle()
-						.fill(Color.red)
-						.frame(width: 70, height: 70)
-						.shadow(radius: 10)
-					Image(systemName: "xmark")
-						.font(.system(size: 25))
-						.foregroundColor(Color.white)
-						.onTapGesture {
-							dismiss()
-						}
-				}
+				DismissView(dismiss: Binding<DismissAction>(
+				get: { dismiss }, set: {_ in }))
 			}
 			.padding(30)
 		}

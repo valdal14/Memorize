@@ -14,6 +14,7 @@ struct UserSelectionView: View {
 	@StateObject var onboardingVM = OnboardingViewModel()
 	@StateObject var wrapper = UserSelectionPropertyWrapper()
 	@Binding var resetStateAfterSave: Bool
+	@State private var showCredits: Bool = false
 	
 	var body: some View {
 		ZStack {
@@ -103,7 +104,18 @@ struct UserSelectionView: View {
 
 				}
 				Spacer()
-				
+				ZStack {
+					Circle()
+						.fill(Color.accentColor)
+						.frame(width: 50, height: 50)
+						.shadow(radius: 10)
+					Image(systemName: "gear")
+						.font(.system(size: 20))
+						.foregroundColor(Color.white)
+						.onTapGesture {
+							showCredits.toggle()
+						}
+				}
 			}
 			.onAppear {
 				/// get the last player name
@@ -124,6 +136,9 @@ struct UserSelectionView: View {
 		.environmentObject(gameVM)
 		.onChange(of: resetStateAfterSave) { _ in
 			gameVM.resetAfterSave()
+		}
+		.sheet(isPresented: $showCredits) {
+			GameCreditsView()
 		}
 	}
 	
