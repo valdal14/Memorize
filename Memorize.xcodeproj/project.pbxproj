@@ -306,6 +306,8 @@
 			dependencies = (
 			);
 			name = Memorize;
+			packageProductDependencies = (
+			);
 			productName = Memorize;
 			productReference = 012BACD9298968EA00BD2C44 /* Memorize.app */;
 			productType = "com.apple.product-type.application";
@@ -356,6 +358,8 @@
 				Base,
 			);
 			mainGroup = 012BACD0298968EA00BD2C44;
+			packageReferences = (
+			);
 			productRefGroup = 012BACDA298968EA00BD2C44 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

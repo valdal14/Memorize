@@ -51,9 +51,10 @@ struct GameCreditsView: View {
 				HStack {
 					Text("Audio:")
 						.font(.headline)
-					Text("Fluffing a Duck - K.MacLeod")
+					Text("Fluffing a Duck K.MacLeod")
 						.font(.headline)
 						.foregroundColor(.accentColor)
+					Spacer()
 				}
 				.padding(5)
 				Spacer()

@@ -33,7 +33,6 @@ class NetworkService: NetworkServicing {
 		switch res.statusCode {
 		case 200:
 			let decodedData = try JSONDecoder().decode(CardAPI.self, from: data)
-			print(decodedData.cards)
 			return storeCard(cards: decodedData.cards)
 		default:
 			throw NetworkManagerError.badRequest

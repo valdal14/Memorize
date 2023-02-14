@@ -20,171 +20,162 @@ struct SavedGameView: View {
 	@State private var showGame = false
 	@State private var savedGame = true
 	@State private var numberOfGuesses: Int = 0
+	let maxLength = 10
 	
 	var body: some View {
 		ZStack {
 			VStack {
-				NavigationView {
-					List {
-						ForEach(onboardingVM.playerSavedgames) { games in
-							ScrollView(.vertical, showsIndicators: true) {
-								switch games.cardType {
-								case "Memorize.EmojiOption.animal":
-									Section {
-										HStack {
-											Text("Emoji Game")
-												.foregroundColor(.accentColor)
-												.padding(.bottom, 5)
-											Spacer()
-												.foregroundColor(.accentColor)
-											Text("🦊")
-										}
-									}
+				List {
+					ForEach(onboardingVM.playerSavedgames) { games in
+						ScrollView(.vertical, showsIndicators: true) {
+							switch games.cardType {
+							case "Memorize.EmojiOption.animal":
+								Section {
 									HStack {
-										ForEach(games.currentState!) { card in
-											Text(card.isFaceUP ? card.cardName : "?")
-										}
+										Text("Emoji Game")
+											.foregroundColor(.accentColor)
+											.padding(.bottom, 5)
 										Spacer()
+											.foregroundColor(.accentColor)
+										Text("🦊")
 									}
-									.onTapGesture {
-										cardType = .emoji(.animal)
-										prepareSavedGameToPlay(game: games.currentState ?? [],
-															   cardType: cardType,
-															   guesses: Int(games.guesses))
-									}
-								case "Memorize.EmojiOption.sport":
-									Section {
-										HStack {
-											Text("Emoji Game")
-												.foregroundColor(.accentColor)
-												.padding(.bottom, 5)
-											Spacer()
-												.foregroundColor(.accentColor)
-											Text("🎲")
-										}
-									}
-									HStack {
-										ForEach(games.currentState!) { card in
-											Text(card.isFaceUP ? card.cardName : "?")
-										}
-										Spacer()
-									}
-									.onTapGesture {
-										cardType = .emoji(.sport)
-										prepareSavedGameToPlay(game: games.currentState ?? [],
-															   cardType: cardType,
-															   guesses: Int(games.guesses))
-									}
-								case "Memorize.EmojiOption.travel":
-									Section {
-										HStack {
-											Text("Emoji Game")
-												.foregroundColor(.accentColor)
-												.padding(.bottom, 5)
-											Spacer()
-												.foregroundColor(.accentColor)
-											Text("✈️")
-										}
-									}
-									HStack {
-										ForEach(games.currentState!) { card in
-											Text(card.isFaceUP ? card.cardName : "?")
-										}
-										Spacer()
-									}
-									.onTapGesture {
-										cardType = .emoji(.travel)
-										prepareSavedGameToPlay(game: games.currentState ?? [],
-															   cardType: cardType,
-															   guesses: Int(games.guesses))
-									}
-								case "Memorize.SymbolOption.device":
-									Section {
-										HStack {
-											Text("Symbol Game")
-												.foregroundColor(.accentColor)
-												.padding(.bottom, 5)
-											Spacer()
-											Image(systemName: "applewatch.watchface")
-												.foregroundColor(.accentColor)
-										}
-									}
-									HStack {
-										ForEach(games.currentState!) { card in
-											Image(systemName: card.isFaceUP ? card.cardName : "questionmark.circle.fill")
-										}
-										Spacer()
-									}
-									.onTapGesture {
-										cardType = .symbol(.device)
-										prepareSavedGameToPlay(game: games.currentState ?? [],
-															   cardType: cardType,
-															   guesses: Int(games.guesses))
-									}
-								case "Memorize.SymbolOption.gaming":
-									Section {
-										HStack {
-											Text("Symbol Game")
-												.foregroundColor(.accentColor)
-												.padding(.bottom, 5)
-											Spacer()
-											Image(systemName: "xbox.logo")
-												.foregroundColor(.accentColor)
-										}
-									}
-									HStack {
-										ForEach(games.currentState!) { card in
-											Image(systemName: card.isFaceUP ? card.cardName : "questionmark.circle.fill")
-										}
-										Spacer()
-									}
-									.onTapGesture {
-										cardType = .symbol(.gaming)
-										prepareSavedGameToPlay(game: games.currentState ?? [],
-															   cardType: cardType,
-															   guesses: Int(games.guesses))
-									}
-								case "Memorize.SymbolOption.nature":
-									Section {
-										HStack {
-											Text("Symbol Game")
-												.foregroundColor(.accentColor)
-												.padding(.bottom, 5)
-											Spacer()
-											Image(systemName: "tree.fill")
-												.foregroundColor(.accentColor)
-										}
-									}
-									HStack {
-										ForEach(games.currentState!) { card in
-											Image(systemName: card.isFaceUP ? card.cardName : "questionmark.circle.fill")
-										}
-										Spacer()
-									}
-									.onTapGesture {
-										cardType = .symbol(.nature)
-										prepareSavedGameToPlay(game: games.currentState ?? [],
-															   cardType: cardType,
-															   guesses: Int(games.guesses))
-									}
-								case "Memorize.PictureOption.image":
-									Text("toDO")
-										.onTapGesture {
-											cardType = .picture(.image)
-											prepareSavedGameToPlay(game: games.currentState ?? [],
-																   cardType: cardType,
-																   guesses: Int(games.guesses))
-										}
-								default:
-									Text("OPPS!!!")
 								}
+								HStack {
+									ForEach(games.currentState!) { card in
+										Text(card.isFaceUP ? card.cardName : "?")
+									}
+									Spacer()
+								}
+								.onTapGesture {
+									cardType = .emoji(.animal)
+									prepareSavedGameToPlay(game: games.currentState ?? [],
+														   cardType: cardType,
+														   guesses: Int(games.guesses))
+								}
+							case "Memorize.EmojiOption.sport":
+								Section {
+									HStack {
+										Text("Emoji Game")
+											.foregroundColor(.accentColor)
+											.padding(.bottom, 5)
+										Spacer()
+											.foregroundColor(.accentColor)
+										Text("🎲")
+									}
+								}
+								HStack {
+									ForEach(games.currentState!) { card in
+										Text(card.isFaceUP ? card.cardName : "?")
+									}
+									Spacer()
+								}
+								.onTapGesture {
+									cardType = .emoji(.sport)
+									prepareSavedGameToPlay(game: games.currentState ?? [],
+														   cardType: cardType,
+														   guesses: Int(games.guesses))
+								}
+							case "Memorize.EmojiOption.travel":
+								Section {
+									HStack {
+										Text("Emoji Game")
+											.foregroundColor(.accentColor)
+											.padding(.bottom, 5)
+										Spacer()
+											.foregroundColor(.accentColor)
+										Text("✈️")
+									}
+								}
+								HStack {
+									ForEach(games.currentState!) { card in
+										Text(card.isFaceUP ? card.cardName : "?")
+									}
+									Spacer()
+								}
+								.onTapGesture {
+									cardType = .emoji(.travel)
+									prepareSavedGameToPlay(game: games.currentState ?? [],
+														   cardType: cardType,
+														   guesses: Int(games.guesses))
+								}
+							case "Memorize.SymbolOption.device":
+								Section {
+									HStack {
+										Text("Symbol Game")
+											.foregroundColor(.accentColor)
+											.padding(.bottom, 5)
+										Spacer()
+										Image(systemName: "applewatch.watchface")
+											.foregroundColor(.accentColor)
+									}
+								}
+								HStack {
+									ForEach(games.currentState!) { card in
+										Image(systemName: card.isFaceUP ? card.cardName : "questionmark.circle.fill")
+									}
+									Spacer()
+								}
+								.onTapGesture {
+									cardType = .symbol(.device)
+									prepareSavedGameToPlay(game: games.currentState ?? [],
+														   cardType: cardType,
+														   guesses: Int(games.guesses))
+								}
+							case "Memorize.SymbolOption.gaming":
+								Section {
+									HStack {
+										Text("Symbol Game")
+											.foregroundColor(.accentColor)
+											.padding(.bottom, 5)
+										Spacer()
+										Image(systemName: "xbox.logo")
+											.foregroundColor(.accentColor)
+									}
+								}
+								HStack {
+									ForEach(games.currentState!) { card in
+										Image(systemName: card.isFaceUP ? card.cardName : "questionmark.circle.fill")
+									}
+									Spacer()
+								}
+								.onTapGesture {
+									cardType = .symbol(.gaming)
+									prepareSavedGameToPlay(game: games.currentState ?? [],
+														   cardType: cardType,
+														   guesses: Int(games.guesses))
+								}
+							case "Memorize.SymbolOption.nature":
+								Section {
+									HStack {
+										Text("Symbol Game")
+											.foregroundColor(.accentColor)
+											.padding(.bottom, 5)
+										Spacer()
+										Image(systemName: "tree.fill")
+											.foregroundColor(.accentColor)
+									}
+								}
+								HStack {
+									ForEach(games.currentState!) { card in
+										Image(systemName: card.isFaceUP ? card.cardName : "questionmark.circle.fill")
+									}
+									Spacer()
+								}
+								.onTapGesture {
+									cardType = .symbol(.nature)
+									prepareSavedGameToPlay(game: games.currentState ?? [],
+														   cardType: cardType,
+														   guesses: Int(games.guesses))
+								}
+							default:
+								Text("")
 							}
 						}
 					}
 				}
 				Spacer()
 				DismissView(dismiss: Binding<DismissAction>(
-				get: { dismiss }, set: {_ in }))
+					get: { dismiss }, set: {_ in }))
 				.padding(30)
 			}
 		}
