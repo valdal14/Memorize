@@ -182,7 +182,6 @@ struct SavedGameView: View {
 						}
 					}
 				}
-				
 				Spacer()
 				ZStack {
 					Circle()

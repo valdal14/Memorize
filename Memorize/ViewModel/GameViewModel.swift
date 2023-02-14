@@ -53,7 +53,7 @@ class GameViewModel: ObservableObject {
 		case "Symbol":
 			deckOptions = SymbolStorage.selectCardOption()
 		case "Image":
-			/// make the API call
+			deckOptions = ["CircleLogo"]
 			break
 		default:
 			break

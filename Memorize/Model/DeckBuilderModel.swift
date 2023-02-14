@@ -157,7 +157,7 @@ enum SymbolOption: String {
 }
 
 enum PictureOption: String {
-	case image = ""
+	case image = "CircleLogo"
 	
 	var symbols: [String] {
 		switch self {

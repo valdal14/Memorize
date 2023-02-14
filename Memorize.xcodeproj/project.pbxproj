@@ -31,6 +31,13 @@
 		01B7614C2990DEEC00DC964B /* GameOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7614B2990DEEC00DC964B /* GameOptionView.swift */; };
 		01B7614E2990E01C00DC964B /* SavedGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7614D2990E01C00DC964B /* SavedGameView.swift */; };
 		01B761502990EACF00DC964B /* DeckPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7614F2990EACF00DC964B /* DeckPickerView.swift */; };
+		01CB8DAB299B5BE200F7A72D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB8DAA299B5BE200F7A72D /* NetworkService.swift */; };
+		01CB8DAD299B5ED700F7A72D /* CardAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB8DAC299B5ED700F7A72D /* CardAPI.swift */; };
+		01CB8DAF299B633700F7A72D /* APICardStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB8DAE299B633700F7A72D /* APICardStateViewModel.swift */; };
+		01CB8DB1299B65F500F7A72D /* ApiImageDeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB8DB0299B65F500F7A72D /* ApiImageDeckViewModel.swift */; };
+		01CB8DB4299B67CB00F7A72D /* APICardStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB8DB3299B67CB00F7A72D /* APICardStateView.swift */; };
+		01CB8DB6299B780200F7A72D /* APICardStateErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB8DB5299B780200F7A72D /* APICardStateErrorView.swift */; };
+		01CB8DB8299B881800F7A72D /* PrepareAPICardGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB8DB7299B881800F7A72D /* PrepareAPICardGameView.swift */; };
 		01DAF6EF298B983D002860F1 /* DeckGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6EE298B983D002860F1 /* DeckGenerator.swift */; };
 		01DAF6F1298B986A002860F1 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6F0298B986A002860F1 /* GameViewModel.swift */; };
 		01DAF6F7298B9A4D002860F1 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAF6F6298B9A4D002860F1 /* AudioService.swift */; };
@@ -76,6 +83,13 @@
 		01B7614B2990DEEC00DC964B /* GameOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOptionView.swift; sourceTree = "<group>"; };
 		01B7614D2990E01C00DC964B /* SavedGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedGameView.swift; sourceTree = "<group>"; };
 		01B7614F2990EACF00DC964B /* DeckPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckPickerView.swift; sourceTree = "<group>"; };
+		01CB8DAA299B5BE200F7A72D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		01CB8DAC299B5ED700F7A72D /* CardAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAPI.swift; sourceTree = "<group>"; };
+		01CB8DAE299B633700F7A72D /* APICardStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICardStateViewModel.swift; sourceTree = "<group>"; };
+		01CB8DB0299B65F500F7A72D /* ApiImageDeckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiImageDeckViewModel.swift; sourceTree = "<group>"; };
+		01CB8DB3299B67CB00F7A72D /* APICardStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICardStateView.swift; sourceTree = "<group>"; };
+		01CB8DB5299B780200F7A72D /* APICardStateErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICardStateErrorView.swift; sourceTree = "<group>"; };
+		01CB8DB7299B881800F7A72D /* PrepareAPICardGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareAPICardGameView.swift; sourceTree = "<group>"; };
 		01DAF6EE298B983D002860F1 /* DeckGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckGenerator.swift; sourceTree = "<group>"; };
 		01DAF6F0298B986A002860F1 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		01DAF6F6298B9A4D002860F1 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
@@ -147,6 +161,7 @@
 		012BACF12989694000BD2C44 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				01CB8DB2299B67A200F7A72D /* APICardState */,
 				01510EAB29922DA700AB8E9B /* Game */,
 				01B761222990C97A00DC964B /* Helpers */,
 				018BD208298E6B6E00CE7556 /* Onboarding */,
@@ -165,6 +180,7 @@
 				012BACF629896ADD00BD2C44 /* CoreData */,
 				012BACF729896B3700BD2C44 /* DeckBuilderModel.swift */,
 				0100FEC9299012130067F766 /* Card.swift */,
+				01CB8DAC299B5ED700F7A72D /* CardAPI.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,6 +192,8 @@
 				01DAF6F8298B9C3D002860F1 /* AudioViewModel.swift */,
 				0100FEDB299014C20067F766 /* OnboardingViewModel.swift */,
 				0124B9D2299A0D07002B9D65 /* SavedGameViewModel.swift */,
+				01CB8DAE299B633700F7A72D /* APICardStateViewModel.swift */,
+				01CB8DB0299B65F500F7A72D /* ApiImageDeckViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -196,6 +214,7 @@
 			children = (
 				01DAF6EE298B983D002860F1 /* DeckGenerator.swift */,
 				01DAF6F6298B9A4D002860F1 /* AudioService.swift */,
+				01CB8DAA299B5BE200F7A72D /* NetworkService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -245,6 +264,16 @@
 				01B761272990CC2B00DC964B /* UIErrorHandler.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		01CB8DB2299B67A200F7A72D /* APICardState */ = {
+			isa = PBXGroup;
+			children = (
+				01CB8DB3299B67CB00F7A72D /* APICardStateView.swift */,
+				01CB8DB5299B780200F7A72D /* APICardStateErrorView.swift */,
+				01CB8DB7299B881800F7A72D /* PrepareAPICardGameView.swift */,
+			);
+			path = APICardState;
 			sourceTree = "<group>";
 		};
 		01DAF703298B9FD6002860F1 /* MemorizeTests */ = {
@@ -360,6 +389,7 @@
 			files = (
 				01DAF6F7298B9A4D002860F1 /* AudioService.swift in Sources */,
 				01DAF6F9298B9C3D002860F1 /* AudioViewModel.swift in Sources */,
+				01CB8DAD299B5ED700F7A72D /* CardAPI.swift in Sources */,
 				012BACF829896B3700BD2C44 /* DeckBuilderModel.swift in Sources */,
 				0124B9E3299A631B002B9D65 /* Player+CoreDataProperties.swift in Sources */,
 				01B7614E2990E01C00DC964B /* SavedGameView.swift in Sources */,
@@ -372,7 +402,10 @@
 				012BACE9298968EB00BD2C44 /* Memorize.xcdatamodeld in Sources */,
 				01103BAE2997E6B900B938D2 /* GameCard.swift in Sources */,
 				01DAF6EF298B983D002860F1 /* DeckGenerator.swift in Sources */,
+				01CB8DB8299B881800F7A72D /* PrepareAPICardGameView.swift in Sources */,
 				0124B9E5299A631B002B9D65 /* Game+CoreDataProperties.swift in Sources */,
+				01CB8DB1299B65F500F7A72D /* ApiImageDeckViewModel.swift in Sources */,
+				01CB8DB6299B780200F7A72D /* APICardStateErrorView.swift in Sources */,
 				01510EAD29922DBB00AB8E9B /* Memorize.swift in Sources */,
 				0124B9E2299A631B002B9D65 /* Player+CoreDataClass.swift in Sources */,
 				0100FEC8299004FB0067F766 /* UserSelectionView.swift in Sources */,
@@ -380,9 +413,12 @@
 				01510EA429921B1500AB8E9B /* LevelOptionView.swift in Sources */,
 				01B46E6B299837C4001769EE /* ShowCardOptionView.swift in Sources */,
 				01DAF6F1298B986A002860F1 /* GameViewModel.swift in Sources */,
+				01CB8DAF299B633700F7A72D /* APICardStateViewModel.swift in Sources */,
 				012BACDD298968EA00BD2C44 /* MemorizeApp.swift in Sources */,
 				01B7612A2990D0E300DC964B /* UserSelectionPropertyWrapper.swift in Sources */,
+				01CB8DAB299B5BE200F7A72D /* NetworkService.swift in Sources */,
 				0100FECA299012130067F766 /* Card.swift in Sources */,
+				01CB8DB4299B67CB00F7A72D /* APICardStateView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

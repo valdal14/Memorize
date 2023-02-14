@@ -18,6 +18,8 @@ struct ShowCardOptionView: View {
 	
 	@State private var card: CardType = CardType.emoji(.animal)
 	@Binding var player: Player?
+	@State private var presentImageGame: Bool = false
+	@State private var apiCardStateView: APICardStateView?
 	
 	var body: some View {
 		ForEach(gameVM.deckOptions, id: \.self) { str in
@@ -35,22 +37,35 @@ struct ShowCardOptionView: View {
 							.foregroundColor(.white)
 							.font(.title2)
 					case "Image":
-						Text(cardTypeString)
+						Image(str)
+							.resizable()
+							.scaledToFill()
 					default:
 						Text(str)
 							.font(.title2)
 					}
 				}
 				.onTapGesture {
-					if let deckIndex = gameVM.deckOptions.firstIndex(of: str) {
-						card = gameVM.createCardTypeFrom(cardName: cardTypeString, index: deckIndex)!
-						playMemorize(cardType: card, level: level)
+					/// if the user selected Image start the download
+					if cardTypeString == "Image" {
+						if let player = player {
+							apiCardStateView = APICardStateView(apiCardStateVM: APICardStateViewModel(numberOfCards: level.rawValue, cardType: CardType.picture(.image), level: level, player: player))
+							presentImageGame = true
+						}
+					} else {
+						if let deckIndex = gameVM.deckOptions.firstIndex(of: str) {
+							card = gameVM.createCardTypeFrom(cardName: cardTypeString, index: deckIndex)!
+							playMemorize(cardType: card, level: level)
+						}
 					}
 				}
 				/// present new screens
 				.fullScreenCover(isPresented: $startNewGame, content: {
 					Memorize(cardType: $card, level: $level, player: $player, wasNewGameComingFromALoadingGame: Binding(get: { false }, set: {_ in }))
 				})
+				.fullScreenCover(isPresented: $presentImageGame) {
+					apiCardStateView
+				}
 		}
 	}
 	
