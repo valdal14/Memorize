@@ -25,6 +25,11 @@ class GameViewModel: ObservableObject {
 	@Published var wasGameLoaded: Bool = false
 	@Published var newGameFromLoadingState: [GameCard] = []
 	@Published var setIsFaceUPFromSavedCard: [Card] = []
+	/// this is only if the player want to play with a deck of downloaded images
+	@Published var dowloadedCardName: [String] = []
+	@Published var dowloadedCard: [Image] = []
+	@Published var gameWithDownloadedImages: Bool = false
+	@Published var isCurrentFromDownloadedImages: Bool = false
 	
 	init(deckGenerator: DeckGeneratorService) {
 		self.deckGenerator = deckGenerator
@@ -236,6 +241,15 @@ class GameViewModel: ObservableObject {
 
 	func setGameCardIsFaceUp(currentGameState: [Card], index: Int, isFaceUp: Binding<Bool>){
 		return isFaceUp.wrappedValue = currentGameState[index].isFaceUP
+	}
+	
+	func setupDeckFromImages(dowloadedImage: Image, imageName: String) {
+		dowloadedCard.append(dowloadedImage)
+		dowloadedCardName.append(imageName)
+	}
+	
+	func shuffleImageDeck(){
+		dowloadedCard.shuffled()
 	}
 }
 

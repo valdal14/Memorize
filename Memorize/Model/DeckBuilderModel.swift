@@ -78,7 +78,7 @@ struct SymbolStorage: DeckPreview {
 }
 
 struct PictureStorage {
-	static let pictureDeck: [String] = []
+	static var pictureDeck: [String] = []
 }
 
 enum GameLevel: Int, CaseIterable {

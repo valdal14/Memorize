@@ -36,7 +36,7 @@ class APICardStateViewModel: ObservableObject {
 			do {
 				let model: [String] = try await self.networkService.drawCard(numberOfCards: numberOfCards)
 				await MainActor.run(body: {
-					self.state = .success(.init(newAPIDeck: model, cardType: cardType, level: level, player: player))
+					self.state = .success(.init(newAPIDeck: (model + model).shuffled(), cardType: cardType, level: level, player: player))
 				})
 			} catch let error as NetworkService.NetworkManagerError {
 				switch error {

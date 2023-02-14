@@ -43,8 +43,9 @@ struct GameCard: View {
 						.font(.largeTitle)
 						.foregroundColor(.white)
 				case .picture(.image):
-					// toDO
-					Text("Image")
+					gameVM.dowloadedCard[self.index]
+						.resizable()
+						.scaledToFill()
 				}
 			}
 		}

@@ -26,16 +26,27 @@ struct Memorize: View {
 	
 	var body: some View {
 		LazyVGrid(columns: columns, alignment: .center, spacing: 4, content: {
-			if gameVM.wasGameLoaded {
-				ForEach(gameVM.newGameFromLoadingState, id: \.index){ gameCard in
-					gameCard
-				}
-			} else {
+			/// play game with downloaded images
+			if gameVM.gameWithDownloadedImages {
 				ForEach(0..<(level.rawValue * 2), id: \.self) { index in
-					GameCard(cardName: gameVM.inGameDeck[index],
+					GameCard(cardName: gameVM.dowloadedCardName[index],
 							 cardType: $cardType,
 							 level: $level,
 							 index: Binding<Int>(get: { index }, set: { _ in }))
+				}
+			} else {
+				/// check if the game was loaded from core data
+				if gameVM.wasGameLoaded {
+					ForEach(gameVM.newGameFromLoadingState, id: \.index){ gameCard in
+						gameCard
+					}
+				} else {
+					ForEach(0..<(level.rawValue * 2), id: \.self) { index in
+						GameCard(cardName: gameVM.inGameDeck[index],
+								 cardType: $cardType,
+								 level: $level,
+								 index: Binding<Int>(get: { index }, set: { _ in }))
+					}
 				}
 			}
 		})
@@ -45,10 +56,8 @@ struct Memorize: View {
 					.fontWidth(.compressed)
 					.font(.title)
 				HStack(spacing: 20) {
-					if wasNewGameComingFromALoadingGame {
+					if gameVM.isCurrentFromDownloadedImages {
 						Button("Main Menu") {
-							// restart the game if we go back
-							gameVM.restartGame(selectedType: cardType, difficultyLevel: level)
 							// start the background track
 							try? audioPlayer.playBackgroundMusic(fileName: "soundtrack", fileExtension: "mp3")
 							// go back
@@ -56,29 +65,41 @@ struct Memorize: View {
 						}
 						.buttonStyle(.borderedProminent)
 					} else {
-						Button("Play again") {
-							// restart the game
-							gameVM.restartGame(selectedType: cardType, difficultyLevel: level)
+						if wasNewGameComingFromALoadingGame {
+							Button("Main Menu") {
+								// restart the game if we go back
+								gameVM.restartGame(selectedType: cardType, difficultyLevel: level)
+								// start the background track
+								try? audioPlayer.playBackgroundMusic(fileName: "soundtrack", fileExtension: "mp3")
+								// go back
+								goBack = true
+							}
+							.buttonStyle(.borderedProminent)
+						} else {
+							Button("Play again") {
+								// restart the game
+								gameVM.restartGame(selectedType: cardType, difficultyLevel: level)
+							}
+							.buttonStyle(.borderedProminent)
+							Button("Main menu") {
+								// restart the game if we go back
+								gameVM.restartGame(selectedType: cardType, difficultyLevel: level)
+								// start the background track
+								try? audioPlayer.playBackgroundMusic(fileName: "soundtrack", fileExtension: "mp3")
+								// go back
+								goBack = true
+							}
+							.buttonStyle(.borderedProminent)
 						}
-						.buttonStyle(.borderedProminent)
-						Button("Main menu") {
-							// restart the game if we go back
-							gameVM.restartGame(selectedType: cardType, difficultyLevel: level)
-							// start the background track
-							try? audioPlayer.playBackgroundMusic(fileName: "soundtrack", fileExtension: "mp3")
-							// go back
-							goBack = true
-						}
-						.buttonStyle(.borderedProminent)
 					}
 				}
 			} else {
 				ZStack {
 					Circle()
-						.fill(wasNewGameComingFromALoadingGame || gameVM.cards.count != 0 ? Color.red : Color.accentColor)
+						.fill(wasNewGameComingFromALoadingGame || gameVM.cards.count != 0 || gameVM.isCurrentFromDownloadedImages ? Color.red : Color.accentColor)
 						.frame(width: 70, height: 70)
 						.shadow(radius: 10)
-						.opacity(wasNewGameComingFromALoadingGame || gameVM.cards.count != 0 ? 0.5 : 1.0)
+						.opacity(wasNewGameComingFromALoadingGame || gameVM.cards.count != 0 || gameVM.isCurrentFromDownloadedImages ? 0.5 : 1.0)
 					Image(systemName: "bookmark.fill")
 						.font(.system(size: 25))
 						.foregroundColor(Color.white)
@@ -99,7 +120,7 @@ struct Memorize: View {
 								showError.toggle()
 							}
 						}
-						.disabled(wasNewGameComingFromALoadingGame || gameVM.cards.count != 0)
+						.disabled(wasNewGameComingFromALoadingGame || gameVM.cards.count != 0 || gameVM.isCurrentFromDownloadedImages)
 				}
 			}
 		}

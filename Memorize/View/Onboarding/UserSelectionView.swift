@@ -70,7 +70,6 @@ struct UserSelectionView: View {
 						.disabled(wrapper.isSaveButtonDisable)
 						.buttonStyle(.borderedProminent)
 						.cornerRadius(15)
-						.buttonStyle(.borderedProminent)
 						.tint(.accentColor)
 						
 					}
@@ -96,10 +95,8 @@ struct UserSelectionView: View {
 					} label: {
 						Text("Load Games")
 					}
-					//.disabled(wrapper.isSaveButtonDisable)
 					.buttonStyle(.borderedProminent)
 					.cornerRadius(15)
-					.buttonStyle(.borderedProminent)
 					.tint(.accentColor)
 					.controlSize(.large)
 					.padding()
