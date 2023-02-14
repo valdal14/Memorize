@@ -19,13 +19,49 @@ struct GameCreditsView: View {
 				Image("LogoV2")
 					.resizable()
 					.frame(width: 150, height: 150)
-				Spacer()
+					.padding()
+				Text("To my favourite gamer")
+					.font(.headline)
+					.foregroundColor(.accentColor)
+				Image("Memorize-Grazia")
+					.resizable()
+					.scaledToFit()
+					.frame(width: 200, height: 200, alignment: .center)
+					.padding(.bottom, 30)
 				/// body
+				HStack {
+					Text("Memorize version:")
+						.font(.headline)
+					if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+						Text(version)
+							.font(.headline)
+							.foregroundColor(.accentColor)
+					}
+					Spacer()
+				}
+				.padding(5)
+				HStack{
+					Text("Card API:")
+						.font(.headline)
+					Link("Deck of Cards", destination: URL(string: "https://deckofcardsapi.com/")!)
+						.font(.headline)
+					Spacer()
+				}
+				.padding(5)
+				HStack {
+					Text("Audio:")
+						.font(.headline)
+					Text("Fluffing a Duck - K.MacLeod")
+						.font(.headline)
+						.foregroundColor(.accentColor)
+				}
+				.padding(5)
+				Spacer()
+				/// end body
 				DismissView(dismiss: Binding<DismissAction>(
 				get: { dismiss }, set: {_ in }))
 			}
 			.padding(30)
-			Spacer()
 		}
 		.edgesIgnoringSafeArea(.all)
     }

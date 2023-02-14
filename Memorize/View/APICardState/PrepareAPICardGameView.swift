@@ -54,6 +54,7 @@ struct PrepareAPICardGameView: View {
 					gameVM.isCurrentFromDownloadedImages = true
 					gameVM.shuffleImageDeck()
 					startNewGame.toggle()
+					audioPlayer.stopAudio()
 					
 				} label: {
 					Text(downloadedCounter != (apiImageDeckVM.level.rawValue * 2) ? "Please Waint..." : "Start a new game")
