@@ -24,6 +24,7 @@ struct SavedGameView: View {
 	
 	var body: some View {
 		ZStack {
+			Color("Background")
 			VStack {
 				List {
 					ForEach(onboardingVM.playerSavedgames) { games in
@@ -40,17 +41,19 @@ struct SavedGameView: View {
 										Text("🦊")
 									}
 								}
-								HStack {
-									ForEach(games.currentState!) { card in
-										Text(card.isFaceUP ? card.cardName : "?")
+								ScrollView(.horizontal, showsIndicators: true) {
+									HStack {
+										ForEach(games.currentState!) { card in
+											Text(card.isFaceUP ? card.cardName : "?")
+										}
+										Spacer()
 									}
-									Spacer()
-								}
-								.onTapGesture {
-									cardType = .emoji(.animal)
-									prepareSavedGameToPlay(game: games.currentState ?? [],
-														   cardType: cardType,
-														   guesses: Int(games.guesses))
+									.onTapGesture {
+										cardType = .emoji(.animal)
+										prepareSavedGameToPlay(game: games.currentState ?? [],
+															   cardType: cardType,
+															   guesses: Int(games.guesses))
+									}
 								}
 							case "Memorize.EmojiOption.sport":
 								Section {
@@ -63,17 +66,19 @@ struct SavedGameView: View {
 										Text("🎲")
 									}
 								}
-								HStack {
-									ForEach(games.currentState!) { card in
-										Text(card.isFaceUP ? card.cardName : "?")
+								ScrollView(.horizontal, showsIndicators: true) {
+									HStack {
+										ForEach(games.currentState!) { card in
+											Text(card.isFaceUP ? card.cardName : "?")
+										}
+										Spacer()
 									}
-									Spacer()
-								}
-								.onTapGesture {
-									cardType = .emoji(.sport)
-									prepareSavedGameToPlay(game: games.currentState ?? [],
-														   cardType: cardType,
-														   guesses: Int(games.guesses))
+									.onTapGesture {
+										cardType = .emoji(.sport)
+										prepareSavedGameToPlay(game: games.currentState ?? [],
+															   cardType: cardType,
+															   guesses: Int(games.guesses))
+									}
 								}
 							case "Memorize.EmojiOption.travel":
 								Section {
@@ -86,17 +91,19 @@ struct SavedGameView: View {
 										Text("✈️")
 									}
 								}
-								HStack {
-									ForEach(games.currentState!) { card in
-										Text(card.isFaceUP ? card.cardName : "?")
+								ScrollView(.horizontal, showsIndicators: true) {
+									HStack {
+										ForEach(games.currentState!) { card in
+											Text(card.isFaceUP ? card.cardName : "?")
+										}
+										Spacer()
 									}
-									Spacer()
-								}
-								.onTapGesture {
-									cardType = .emoji(.travel)
-									prepareSavedGameToPlay(game: games.currentState ?? [],
-														   cardType: cardType,
-														   guesses: Int(games.guesses))
+									.onTapGesture {
+										cardType = .emoji(.travel)
+										prepareSavedGameToPlay(game: games.currentState ?? [],
+															   cardType: cardType,
+															   guesses: Int(games.guesses))
+									}
 								}
 							case "Memorize.SymbolOption.device":
 								Section {
@@ -109,17 +116,19 @@ struct SavedGameView: View {
 											.foregroundColor(.accentColor)
 									}
 								}
-								HStack {
-									ForEach(games.currentState!) { card in
-										Image(systemName: card.isFaceUP ? card.cardName : "questionmark.circle.fill")
+								ScrollView(.horizontal, showsIndicators: true) {
+									HStack {
+										ForEach(games.currentState!) { card in
+											Image(systemName: card.isFaceUP ? card.cardName : "questionmark.circle.fill")
+										}
+										Spacer()
 									}
-									Spacer()
-								}
-								.onTapGesture {
-									cardType = .symbol(.device)
-									prepareSavedGameToPlay(game: games.currentState ?? [],
-														   cardType: cardType,
-														   guesses: Int(games.guesses))
+									.onTapGesture {
+										cardType = .symbol(.device)
+										prepareSavedGameToPlay(game: games.currentState ?? [],
+															   cardType: cardType,
+															   guesses: Int(games.guesses))
+									}
 								}
 							case "Memorize.SymbolOption.gaming":
 								Section {
@@ -132,17 +141,19 @@ struct SavedGameView: View {
 											.foregroundColor(.accentColor)
 									}
 								}
-								HStack {
-									ForEach(games.currentState!) { card in
-										Image(systemName: card.isFaceUP ? card.cardName : "questionmark.circle.fill")
+								ScrollView(.horizontal, showsIndicators: true) {
+									HStack {
+										ForEach(games.currentState!) { card in
+											Image(systemName: card.isFaceUP ? card.cardName : "questionmark.circle.fill")
+										}
+										Spacer()
 									}
-									Spacer()
-								}
-								.onTapGesture {
-									cardType = .symbol(.gaming)
-									prepareSavedGameToPlay(game: games.currentState ?? [],
-														   cardType: cardType,
-														   guesses: Int(games.guesses))
+									.onTapGesture {
+										cardType = .symbol(.gaming)
+										prepareSavedGameToPlay(game: games.currentState ?? [],
+															   cardType: cardType,
+															   guesses: Int(games.guesses))
+									}
 								}
 							case "Memorize.SymbolOption.nature":
 								Section {
@@ -155,17 +166,19 @@ struct SavedGameView: View {
 											.foregroundColor(.accentColor)
 									}
 								}
-								HStack {
-									ForEach(games.currentState!) { card in
-										Image(systemName: card.isFaceUP ? card.cardName : "questionmark.circle.fill")
+								ScrollView(.horizontal, showsIndicators: true) {
+									HStack {
+										ForEach(games.currentState!) { card in
+											Image(systemName: card.isFaceUP ? card.cardName : "questionmark.circle.fill")
+										}
+										Spacer()
 									}
-									Spacer()
-								}
-								.onTapGesture {
-									cardType = .symbol(.nature)
-									prepareSavedGameToPlay(game: games.currentState ?? [],
-														   cardType: cardType,
-														   guesses: Int(games.guesses))
+									.onTapGesture {
+										cardType = .symbol(.nature)
+										prepareSavedGameToPlay(game: games.currentState ?? [],
+															   cardType: cardType,
+															   guesses: Int(games.guesses))
+									}
 								}
 							default:
 								Text("")
@@ -173,6 +186,8 @@ struct SavedGameView: View {
 						}
 					}
 				}
+				.background(Color("Background"))
+				.scrollContentBackground(.hidden)
 				Spacer()
 				DismissView(dismiss: Binding<DismissAction>(
 					get: { dismiss }, set: {_ in }))
