@@ -13,7 +13,7 @@ Memory Game is a native iOS application developed as part of the iOS Udacity Nan
 
 
 # Video Gameplay
-[![Watch the video](https://github.com/valdal14/Virtual-Turist/blob/main/VirtualTuristBanner.png?raw=true)](https://youtu.be/VXunB0-E5Oc)
+[![Watch the video](https://github.com/valdal14/Memorize/blob/develop/memory.png)](https://youtu.be/VXunB0-E5Oc)
 
 # Contributing
 When contributing to this repository, please first discuss the change you wish to make via issue,
